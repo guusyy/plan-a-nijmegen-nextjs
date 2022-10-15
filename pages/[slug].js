@@ -1,7 +1,18 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import MainLayout from '../components/layout/main'
-import getPages from '../queries/getPages';
+import MainLayout from "../components/layout/main"
+import getPages from "../queries/getPages";
+
+export async function getStaticPaths() {
+  const pages = await getPages();
+
+  return {
+    paths: pages.map(page => ({
+      params: {
+        slug: page.slug
+      }
+    })),
+    fallback: false, // can also be true or 'blocking'
+  }
+}
 
 export async function getStaticProps() {
   const navItems = await getPages();
@@ -18,7 +29,7 @@ export default function Home({ navItems }) {
   return (
     <MainLayout navItems={navItems}>
       <div>
-        Test
+        Subpagina
       </div>
     </MainLayout>
   )

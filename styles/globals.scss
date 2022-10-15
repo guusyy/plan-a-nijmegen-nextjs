@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "National";
+  src: url("../assets/National2-Regular_convert.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica condensed bold";
+  src: url("../assets/helvetica-condensed-bold.woff") format("woff");
+  font-display: swap;
+}
+
+main {
+  min-height: calc(100vh - 14rem);
+  padding-bottom: 10rem;
+}
+
+html {
+  font-family: 'National', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+  background: var(--pa-white);
+  color: hsl(10,74%,23%);
+  color: var(--pa-maroon);
+}
+
+.page-title, .nav-title {
+  font-family: "Helvetica condensed bold", "Helvetica Neue",Arial,"Noto Sans",sans-serif;
+
+  letter-spacing: -2px;
+}
+
+@media (max-width: 40em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+*, :before, :after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  font-weight: 400;
+}
+
+
+h1 {
+  font-size: clamp(4.5rem, 3vw + 1rem, 5.2rem);
+}
+
+p, h3, h4, h5, h6, .text, table {
+  font-size: 2.2rem;
+  line-height: 3.1rem;
+  letter-spacing: -.5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.rte {
+  & p {
+    margin-bottom: 2rem;
+  }
+
+  h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    letter-spacing: -.5px;
+  }
+  
+  ul {
+    margin: 2rem 0;
+    list-style-type: none;
+    padding-left: 2rem;
+  }
+  
+  ul li:before {
+    content: "–";
+    position: absolute;
+    margin-left: -2rem;
+  }
+}
+
+:root {
+  --pa-red: hsl(7,92%,49%);
+  --pa-maroon: hsl(10,74%,23%);
+  --pa-white: #FDF9F7;
+
+  --swiper-navigation-color: #FDF9F7;
+  --swiper-pagination-color: #FDF9F7;
+
+  --swiper-navigation-size: 33px !important;
+
+  @media (max-width: 48em) {
+    --swiper-navigation-size: 22px !important;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--pa-white); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--pa-maroon); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pa-maroon); 
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: var(--pa-white);
+  background: var(--pa-red);
+}
+
+::selection {
+  color: var(--pa-white);
+  background: var(--pa-red);
+}
+
+.pa-contact-businesshours td:first-child {
+  padding-right: 2rem;
+}
+.pa-contact-businesshours table {
+  width: 35rem;
+  max-width: 100%;
+  font-size: 2rem;
+}
+
+table {
+  max-width: 100%;
+}
+
+.btn {
+  border: 1px solid var(--pa-maroon);
+  background: var(--pa-white);
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2rem 2rem 2rem 1rem;
+  color: var(--pa-maroon);
+  cursor: pointer;
+  transition: all 0.1s ease;
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & svg {
+    fill: var(--pa-maroon);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    background: var(--pa-maroon);
+    color: var(--pa-white);
+    text-decoration: none;
+
+    & svg {
+      fill: var(--pa-white);
+    }
+  }
+}
+
+.pa-icon {
+  width: 2rem;
+}
+
+select {
+  -webkit-appearance:none;
+}
+
+input, textarea, select, button {
+  font-family: 'National', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.swiper-slide {
+  height: 100% !important;
+}
+
+.swiper-lazy {
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+.swiper-lazy-loaded {
+  opacity: 1;
+}
+
+img {
+  transition: opacity .6s ease;
+  width: 100%;
+}
+
+.img-lazy {
+  opacity: 0;
+}
+
+.img-lazy[data-src] {
+  opacity: 0;
+}
+
+.img-lazy[lazy=loading] {
+  opacity: 0;
+}
+
+.img-lazy[lazy=loaded] {
+  opacity: 1;
+}
