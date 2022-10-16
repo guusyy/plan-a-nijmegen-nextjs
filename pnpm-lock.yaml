@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@apollo/client': ^3.7.0
+  animejs: ^3.2.1
   autoprefixer: ^10.4.12
   eslint: 8.24.0
   eslint-config-next: 12.3.1
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   '@apollo/client': 3.7.0_gdcq4dv6opitr3wbfwyjmanyra
+  animejs: 3.2.1
   graphql: 16.6.0
   next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
   react: 18.2.0
@@ -629,6 +631,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /animejs/3.2.1:
+    resolution: {integrity: sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==}
+    dev: false
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}

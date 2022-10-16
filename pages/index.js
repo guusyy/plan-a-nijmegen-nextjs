@@ -7,6 +7,8 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
+import anime from 'animejs'
+import { useEffect } from 'react';
 
 const PAContainer = styled.div`
   display: flex;
@@ -15,6 +17,10 @@ const PAContainer = styled.div`
 
   @media (min-width: 64em ) {
     min-height: 80vh;
+  }
+
+  .intro-text, .pa-quickbutton, .pa-contact-info {
+    opacity: 0;
   }
 
   .intro-rte h1 {
@@ -131,6 +137,8 @@ const PAContainer = styled.div`
   }
 
   .hero-image  {
+    opacity: 0;
+    
     img {
       width: 100%;
     }
@@ -156,13 +164,51 @@ export async function getStaticProps() {
 export default function Home({ navItems, footerColumns, homepageData }) {
   const randomImageIndex = Math.floor(Math.random() * homepageData.heroImages.data.length);
 
+  useEffect(() => {
+    var tl = anime.timeline({
+      duration: 1500
+    });
+
+    tl
+      .add({
+        targets: '.intro-text',
+        translateY: [-20, 0],
+        delay: 100,
+        opacity: [0, 1],
+        duration: 1700,
+      })
+      .add({
+        targets: '.hero-image',
+        translateY: [-5, 0],
+        delay: 100,
+        opacity: [0, 1],
+        duration: 1700,
+      }, 300)
+      .add({
+        targets: '.pa-quickbutton',
+        translateY: [-5, 0],
+        opacity: [0, 1],
+        duration: 1700,
+        delay: anime.stagger(200) // increase delay by 100ms for each elements.
+      }, 700)
+      .add({
+        targets: '.pa-contact-info',
+        translateY: [-5, 0],
+        opacity: [0, 1],
+        duration: 1400,
+      }, 1500)
+  });
+
+
   return (
     <MainLayout navItems={navItems} footerColumns={footerColumns}>
       <PAContainer>
-        <div className="intro-rte">
-          <h1>
-            {homepageData.introText}
-          </h1>
+        <div className="intro-text">
+          <div className="intro-rte">
+            <h1>
+              {homepageData.introText}
+            </h1>
+          </div>
         </div>
 
         {
