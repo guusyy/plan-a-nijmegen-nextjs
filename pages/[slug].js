@@ -1,4 +1,5 @@
 import MainLayout from "../components/layout/main"
+import getFooterColumns from "../queries/getFooterColumns";
 import getPages from "../queries/getPages";
 
 export async function getStaticPaths() {
@@ -24,6 +25,7 @@ export async function getStaticProps() {
         .sort((a, b) => a.position-b.position),
       footerColumns
     },
+    revalidate: 60
  };
 }
 
