@@ -15,7 +15,7 @@ const ContentContainer = styled.div`
   }
 `;
 
-export default function MainLayout({ children, navItems }) {
+export default function MainLayout({ children, navItems, footerColumns }) {
   return (
     <>
       <Head>
@@ -27,7 +27,7 @@ export default function MainLayout({ children, navItems }) {
         <Navbar navItems={navItems} />
         <ContentContainer>
           <main>{children}</main>
-          <Footer />
+          <Footer footerColumns={footerColumns} />
         </ContentContainer>
       </div>
     </>
