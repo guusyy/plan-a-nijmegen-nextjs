@@ -1,7 +1,16 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
+import { button } from "./getHomepage";
 
-export default async function getFooterColumns() {
+type FooterColumnRichText = {
+  mdText: string;
+}
+
+type FooterColumnLinks = button[]
+
+type FooterColumn = FooterColumnRichText | FooterColumnLinks
+
+export default async function getFooterColumns(): Promise<FooterColumn> {
   const { data } = await client.query({
     query: gql`
       query {

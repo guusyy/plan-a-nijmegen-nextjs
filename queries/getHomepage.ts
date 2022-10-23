@@ -1,7 +1,37 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 
-export default async function getHomePage() {
+export type button = {
+  label: string;
+  linkedPage: {
+    data: {
+      attributes: {
+        title?: string;
+        slug: string;
+      }
+    }
+  }
+  externalUrl: string | null;
+}
+
+export type image = {
+  data: {
+    attributes: {
+      url: string;
+      width: string;
+      height: string;
+    }
+  }
+}
+
+type homePageData = {
+  introText: string;
+  heroImages: image[];
+  buttons: button[];
+  contactDetails: string;
+}
+
+export default async function getHomePage(): Promise<homePageData> {
   const { data } = await client.query({
     query: gql`
       query {

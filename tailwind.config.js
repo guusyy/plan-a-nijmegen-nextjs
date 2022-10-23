@@ -8,4 +8,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  safelist: [
+    'grid',
+    'lg:grid-cols-2',
+  ]
 }

@@ -219,6 +219,10 @@ export default function Home({ navItems, footerColumns, homepageData }) {
                 width={homepageData.heroImages.data[randomImageIndex].attributes.width}
                 height={homepageData.heroImages.data[randomImageIndex].attributes.height}
                 alt="Sfeerbeeld van Plan A Nijmegen"
+                priority
+                sizes="
+                  100vw
+                "
               />
             </div>
           )

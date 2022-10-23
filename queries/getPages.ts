@@ -1,7 +1,14 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 
-export default async function getPages() {
+type NavItem = {
+  show: boolean;
+  title: string;
+  position: number;
+  slug: string;
+}
+
+export default async function getPages(): Promise<NavItem[]> {
   const { data } = await client.query({
     query: gql`
       query {
