@@ -166,7 +166,7 @@ const MobileNavContainer = styled.div`
   width: 100%;
   margin-right: 2rem;
   background-color: var(--pa-white);
-  padding: 0;
+  padding: 2rem 0;
 
   z-index: 1000;
 

@@ -51,6 +51,7 @@ const CommunityGrid = styled.div`
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    min-height: 20rem;
 
     > div {
       min-height: 100%;
