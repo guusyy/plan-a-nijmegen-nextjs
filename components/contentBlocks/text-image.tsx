@@ -13,10 +13,10 @@ import 'swiper/css/navigation';
 import { textAndImage } from "../../queries/getPage"
 import Image from "next/image"
 
-export const Container = styled.div`
+export const Container = styled.div<{ widthFull: boolean }>`
   display: grid;
   max-width: 100%;
-  grid-template-columns: ${(props: any) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
+  grid-template-columns: ${(props) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
   gap: 2rem;
 
   @media (max-width: 64em) {
