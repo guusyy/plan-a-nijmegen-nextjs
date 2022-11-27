@@ -5,39 +5,7 @@ import rehypeRaw from "rehype-raw"
 import styled from "styled-components"
 import { community } from "../../queries/getPage"
 import anime from 'animejs'
-
-const Container = styled.div`
-  display: grid;
-  max-width: 100%;
-  grid-template-columns: ${(props: any) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
-  gap: 2rem;
-
-  @media (max-width: 64em) {
-    grid-template-columns: minmax(10px, 1fr);
-    grid-template-row: repeat(2, 1fr);
-  }
-
-  .swiper-holder {
-    display: flex;
-    justify-content: flex-end;
-
-    .swiper-slide {
-      transition-property: opacity;
-    }
-
-    .image-holder {
-      width: 90%;
-
-      & img {
-        min-width: 100%;
-      }
-
-      @media (max-width: 64em) {
-        width: 100%;
-      }
-    }
-  }
-`
+import { Container } from "./text-image"
 
 const CommunityGrid = styled.div`
   margin: 5rem 0;

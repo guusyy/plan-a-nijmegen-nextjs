@@ -10,7 +10,7 @@ export type StrapiImage = {
   }
 }
 
-export type contentBlock = textAndImage;
+export type contentBlock = textAndImage | community | membershipCB;
 
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
@@ -42,6 +42,25 @@ export type community = {
   };
 }
 
+export type membership = {
+  attributes: {
+    title: string
+    price: number
+    buttonLabel: string
+    perksMd: string;
+  }
+}
+
+export type membershipCB = {
+  blockType: "ComponentContentblockMembershipSelectie";
+  introTextMd: string
+  formTextMd: string
+  formSubmitTextMd: string
+  subscriptions: {
+    data: membership[]
+  }
+}
+
 export type StrapiPage = {
   title: string;
   contentBlocks: contentBlock[]
@@ -57,6 +76,21 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
               title:Titel
               contentBlocks:Contentblokken {
                 blockType:__typename
+                ... on ComponentContentblockMembershipSelectie {
+                  introTextMd:IntroTekst
+                  formTextMd:FormulierIntroTekst
+                  formSubmitTextMd:FormulierVerzondenBericht
+                  subscriptions:abonnementen {
+                    data {
+                      attributes {
+                        title:Titel
+                        price:PrijsPm
+                        buttonLabel:KnopTekst
+                        perksMd:Perks
+                      }
+                    }
+                  }
+                }
                 ... on ComponentContentblockCommunity {
                   mdText:Tekst
                   members:community_members {
