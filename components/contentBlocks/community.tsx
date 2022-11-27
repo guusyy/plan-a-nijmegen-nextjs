@@ -159,7 +159,6 @@ export default function Community({contentBlockContext}: {
                         height={member.attributes.image.data.attributes.height}
                         alt={'Afbeelding van: ' + member.attributes.fullName}
                         objectFit={'cover'}
-                        priority
                         sizes="
                           (max-width: 768px) 20vw,
                           50vw
