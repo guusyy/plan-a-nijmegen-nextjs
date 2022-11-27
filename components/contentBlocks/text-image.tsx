@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from 'rehype-raw'
 import styled from "styled-components"
 
-import { EffectFade, Lazy, Navigation } from 'swiper';
+import { EffectFade, Navigation, Lazy } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,7 +16,7 @@ import Image from "next/image"
 const Container = styled.div`
   display: grid;
   max-width: 100%;
-  grid-template-columns: calc(40% - 1rem) calc(60% - 1rem);
+  grid-template-columns: ${(props: any) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
   gap: 2rem;
 
   @media (max-width: 64em) {
@@ -27,6 +27,10 @@ const Container = styled.div`
   .swiper-holder {
     display: flex;
     justify-content: flex-end;
+
+    .swiper-slide {
+      transition-property: opacity;
+    }
 
     .image-holder {
       width: 90%;
@@ -56,7 +60,7 @@ export default function TextAndImage({contentBlockContext}: {
   contentBlockContext: textAndImage
 }) {
   return (
-    <Container>
+    <Container widthFull={contentBlockContext.noImageFullWidth}>
       <div className="column rte">
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {contentBlockContext.mdText}
@@ -103,26 +107,29 @@ export default function TextAndImage({contentBlockContext}: {
                 ) :
                 (
                   <Swiper
-                    modules={[EffectFade, Lazy, Navigation]}
+                    modules={[Navigation, EffectFade, Lazy]}
                     slidesPerView={1}
-                    effect="fade"
-                    loop
-                    navigation
+                    speed={400}
+                    effect={"fade"}
+                    navigation={true}
+                    lazy={true}
                   >
                     {
                       contentBlockContext.images.data.map((image, idx) => (
                         <SwiperSlide key={idx} >
-                          <Image
-                            src={image.attributes.url}
-                            width={image.attributes.width}
-                            height={image.attributes.height}
-                            alt="Sfeerbeeld van Plan A Nijmegen"
-                            priority
-                            sizes="
-                              (max-width: 768px) 100vw,
-                              50vw
-                            "
-                          />
+                          <div className="relative">
+                            <Image
+                              src={image.attributes.url}
+                              width={image.attributes.width}
+                              height={image.attributes.height}
+                              alt="Sfeerbeeld van Plan A Nijmegen"
+                              priority
+                              sizes="
+                                (max-width: 768px) 100vw,
+                                50vw
+                              "
+                            />
+                          </div>
                         </SwiperSlide>
                       ))
                     }

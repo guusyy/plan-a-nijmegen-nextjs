@@ -11,5 +11,11 @@ module.exports = {
   safelist: [
     'grid',
     'lg:grid-cols-2',
+    'flex',
+    'flex-col',
+    'lg:flex-row', 
+    'gap-14',
+    'gap-5',
+    'lg:gap-40'
   ]
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Community from '../components/contentBlocks/community';
 import TextAndImage from "../components/contentBlocks/text-image";
 
 import MainLayout from "../components/layout/main"
@@ -34,7 +35,7 @@ export async function getStaticProps(context) {
       footerColumns,
       page
     },
-    revalidate: 60
+    revalidate: 10
  };
 }
 
@@ -46,6 +47,7 @@ export default function DetailPage({
 
   const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
     switch(contentBlock.blockType) {
+        case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
         case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
         default:                                              return <h1 key={idx} >Geen contentblock template</h1>
       }

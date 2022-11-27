@@ -15,10 +15,31 @@ export type contentBlock = textAndImage;
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
   mdText: string;
+  noImageFullWidth: boolean | null;
   images: {
     data: StrapiImage[]
   };
   buttons: button[];
+}
+
+export type community = {
+  blockType: "ComponentContentblockCommunity";
+  mdText: string;
+  members: {
+    data: {
+      attributes: {
+        image: {
+          data: StrapiImage
+        }
+        fullName: string
+        companyName: string
+        websiteUrl: string
+        instaUrl: string
+        linkedInUrl: string
+        fbUrl: string
+      }
+    }[]
+  };
 }
 
 export type StrapiPage = {
@@ -36,8 +57,33 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
               title:Titel
               contentBlocks:Contentblokken {
                 blockType:__typename
+                ... on ComponentContentblockCommunity {
+                  mdText:Tekst
+                  members:community_members {
+                    data {
+                      attributes {
+                        image:Afbeelding {
+                          data {
+                            attributes {
+                              url
+                              width
+                              height
+                            }
+                          }
+                        }
+                        fullName:VolledigeNaam
+                        companyName:Bedrijfsnaam
+                        websiteUrl:WebsiteLink
+                        instaUrl:InstagramLink
+                        linkedInUrl:LinkedinLink
+                        fbUrl:FacebookLink
+                      }
+                    }
+                  }
+                }
                 ... on  ComponentContentblockTekstEnAfbeeldingSlider{
                   mdText:Tekst
+                  noImageFullWidth:AlleenTekstMetVolleBreedte
                   images:AfbeeldingInSlider {
                     data {
                       attributes {
