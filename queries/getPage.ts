@@ -10,7 +10,7 @@ export type StrapiImage = {
   }
 }
 
-export type contentBlock = textAndImage | community | membershipCB;
+export type contentBlock = textAndImage | community | membershipCB | ruimteCB;
 
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
@@ -61,6 +61,28 @@ export type membershipCB = {
   }
 }
 
+export type space = {
+  attributes: {
+    title: string
+    descriptionMd: string
+    buttonLabel: string
+    image: {
+      data: StrapiImage[]
+    }
+    position: number
+  }
+}
+
+export type ruimteCB = {
+  blockType: "ComponentContentblockRuimteSelectie"
+  introTextMd: string
+  formIntroTextMd: string
+  formSubmitTextMd: string
+  spaces: {
+    data: space[]
+  }
+}
+
 export type StrapiPage = {
   title: string;
   contentBlocks: contentBlock[]
@@ -76,6 +98,30 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
               title:Titel
               contentBlocks:Contentblokken {
                 blockType:__typename
+                ... on ComponentContentblockRuimteSelectie {
+                  introTextMd:IntroTekst
+                  formIntroTextMd:FormulierIntroTekst
+                  formSubmitTextMd:FormulierVerzondenBericht
+                  spaces:ruimtes {
+                    data {
+                      attributes {
+                        title:Titel
+                        descriptionMd:Omschrjiving
+                        buttonLabel:SelecteerKnopTekst
+                        image:Afbeelding {
+                          data {
+                            attributes {
+                              url
+                              width
+                              height
+                            }
+                          }
+                        }
+                        position:Positie
+                      }
+                    }
+                  }
+                }
                 ... on ComponentContentblockMembershipSelectie {
                   introTextMd:IntroTekst
                   formTextMd:FormulierIntroTekst

@@ -2,6 +2,7 @@ import React from "react";
 import Community from '../components/contentBlocks/community';
 import TextAndImage from "../components/contentBlocks/text-image";
 import Membership from '../components/contentBlocks/membership';
+import Ruimtes from '../components/contentBlocks/ruimtes';
 
 import MainLayout from "../components/layout/main"
 import getFooterColumns from "../queries/getFooterColumns";
@@ -48,6 +49,7 @@ export default function DetailPage({
 
   const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
     switch(contentBlock.blockType) {
+        case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
         case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
         case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
         case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;

@@ -3,20 +3,21 @@ import React, { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import styled from "styled-components"
-import { community, membershipCB } from "../../queries/getPage"
+import { community, membershipCB, ruimteCB } from "../../queries/getPage"
 import anime from 'animejs'
 import { Container } from "./text-image"
 import { useRouter } from "next/router"
+import { ContactRow, IntroRow } from "./membership"
 
-export const IntroRow = styled.div`
-  margin-bottom: 1rem;
-  max-width: 120rem;
-`
+import { EffectFade, Navigation, Lazy } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-const MembershipRow = styled.div`
+const WorkspaceRow = styled.div`
   display: grid;
   max-width: 100%;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4rem;
 
   @media (max-width: 64em) {
@@ -24,18 +25,17 @@ const MembershipRow = styled.div`
     grid-template-row: repeat(2, 1fr);
   }
 
-  & .membership-item {
-
-    border-top: 1px solid var(--pa-maroon);
+  & .workspace-item {
     padding: 1rem 0rem;
     opacity: 0;
 
     & h3 {
+      margin: 4rem 0 1rem 0;
       font-size: 3rem;
     }
 
-    ul {
-      padding-left: 0;
+    & .workspace-description {
+      margin: 2rem 0;
     }
   }
 
@@ -49,19 +49,13 @@ const MembershipRow = styled.div`
   }
 
   & .features {
-    margin: 2rem 0;
-    list-style-type: none;
+    list-style-type: "-";
+    margin: 2rem 0 2rem 1rem;
 
     & li {
-      padding-left: 2rem;
+      padding-left: 1rem;
       margin: .5rem 0;
       font-size: 2.2rem;
-      
-      &:before {
-        content: "–";
-        position: absolute;
-        margin-left: -2rem;
-      }
     }
   }
 
@@ -87,147 +81,11 @@ const MembershipRow = styled.div`
   }
 `
 
-export const ContactRow = styled.div`
-  display: grid;
-  max-width: 100%;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4rem;
-  margin-bottom: 10rem;
-  opacity: 0;
-
-  @media (max-width: 64em) {
-    grid-template-columns: minmax(10px, 1fr);
-    grid-template-row: repeat(2, 1fr);
-  }
-
-  form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    margin: 4rem 0;
-
-    .fullname {
-      display: flex;
-      gap: 1rem;
-
-      :first-child {
-        width: 60%;
-      }
-
-      :last-child {
-        width: 40%;
-      }
-
-      @media (max-width: 48em) {
-        flex-direction: column;
-        
-        :first-child {
-          width: 100%;
-        }
-
-        :last-child {
-          width: 100%;
-        }
-      }
-    }
-
-    .select-arrow-down {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translate(0, -50%);
-      width: 1.6rem;
-      pointer-events: none;
-    }
-
-    & select, input, textarea {
-      font-size: 2rem;
-      width: 100%;
-      height: 5rem;      
-      border: none;
-      border-bottom: 1px solid var(--pa-maroon);
-      background: var(--pa-white);
-      color: var(--pa-maroon);
-      padding: .5rem 1rem;
-
-      @media (max-width: 64em) {
-        height: 6rem;
-      }
-
-      &:focus {
-        outline: 0;
-      }
-
-      &::placeholder {
-        opacity: 0.4;
-        font-weight: 400;
-        color: var(--pa-maroon);
-      }
-    }
-
-    textarea {
-      height: 10rem;
-      resize: none;
-    }
-
-    select {
-      display: flex;
-    }
-
-    button {
-      border: 1px solid var(--pa-maroon);
-      background: var(--pa-white);
-      font-size: 2rem;
-      text-transform: uppercase;
-      padding: 1rem;
-      color: var(--pa-maroon);
-      cursor: pointer;
-      transition: all .1s ease;
-      margin: 2rem 0;
-      display: flex;
-      gap: 2rem;
-      margin-left: auto;
-
-      &:focus {
-        outline: 0;
-      }
-
-      &:hover {
-        background: var(--pa-maroon);
-        color: var(--pa-white);
-      }
-    }
-  }
-
-  .address-inputs {
-    display: flex;
-    gap: 1rem;
-
-    @media (max-width: 48em) {
-      flex-direction: column;
-    }
-  }
-
-  .succes-message {
-
-    width: 100%;
-    min-height: 20rem;
-    align-items: center;
-    text-decoration: underline;
-    display: flex;
-    text-align: left;
-
-    &.hidden {
-      display: none;
-      opacity: 0;
-    }
-  }
-`
-
 export default function Membership({contentBlockContext}: {
-  contentBlockContext: membershipCB
+  contentBlockContext: ruimteCB
 }) {
+  const spaces = [...contentBlockContext.spaces.data].sort((a, b) => a.attributes.position - b.attributes.position);
+
   const formRef = React.createRef<HTMLDivElement>();
 
   const [initiated, setInitiated] = useState(false);
@@ -248,7 +106,7 @@ export default function Membership({contentBlockContext}: {
 
     tl
       .add({
-        targets: '.membership-item',
+        targets: '.workspace-item',
         translateY: [-5, 0],
         opacity: [0, 1],
         duration: 1700,
@@ -262,7 +120,7 @@ export default function Membership({contentBlockContext}: {
       }, 500)
   }, [initiated])
 
-  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.subscriptions.data[0].attributes.title);
+  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.spaces.data[0].attributes.title);
 
   const setGekozenMembership = (value: string) => {
     setChosenMembership(value);
@@ -286,68 +144,109 @@ export default function Membership({contentBlockContext}: {
           </ReactMarkdown>
         </div>
       </IntroRow>
-      <MembershipRow>
-        {
-          contentBlockContext.subscriptions.data.map((membership, index) => (
-            <article className="membership-item" key={index}>
-              <h3>{membership.attributes.title}</h3>
-              <div className="price">€{membership.attributes.price.toFixed(2).toString().replace(".", ",")} <span className="price-label">per maand</span></div>
-              <ul className="features">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
-                  {membership.attributes.perksMd}
-                </ReactMarkdown>
-              </ul>
-              <button onClick={() => setGekozenMembership(membership.attributes.title)}>{membership.attributes.buttonLabel}</button>
-            </article>
-          ))
-        }
-      </MembershipRow>
+      {
+        contentBlockContext.spaces && (
+          <WorkspaceRow>
+            {
+              spaces.map((space, idx) => (
+                <div className="workspace-item" key={idx}>
+                  {
+                    spaces.length < 2 ? (
+                      <Image
+                        src={space.attributes.image.data[0].attributes.url}
+                        width={space.attributes.image.data[0].attributes.width}
+                        height={space.attributes.image.data[0].attributes.height}
+                        alt={`Afbeelding van ${space.attributes.title}`}
+                        sizes="
+                          (max-width: 768px) 100vw,
+                          50vw
+                        "
+                      />
+                    ) :
+                    (
+                      <Swiper
+                        modules={[Navigation, EffectFade, Lazy]}
+                        slidesPerView={1}
+                        speed={400}
+                        effect={"fade"}
+                        navigation={true}
+                        lazy={true}
+                      >
+                        {
+                          space.attributes.image.data.map((image, idx) => (
+                            <SwiperSlide key={idx} >
+                              <div className="relative">
+                                <Image
+                                  src={image.attributes.url}
+                                  width={image.attributes.width}
+                                  height={image.attributes.height}
+                                  alt={`Afbeelding ${idx} van ${space.attributes.title}`}
+                                  sizes="
+                                    (max-width: 768px) 100vw,
+                                    50vw
+                                  "
+                                />
+                              </div>
+                            </SwiperSlide>
+                          ))
+                        }
+                      </Swiper>
+                    )
+                  }
+                  <h3>{space.attributes.title}</h3>
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte workspace-description">
+                    {space.attributes.descriptionMd}
+                  </ReactMarkdown>
+                  <button>{space.attributes.buttonLabel}</button>
+                </div>
+              ))
+            }
+          </WorkspaceRow>
+        )
+      }
       <ContactRow className="contact-row" ref={formRef}>
         <div>
           {
             formVisible && (
               <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
-                {contentBlockContext.formTextMd}
+                {contentBlockContext.formIntroTextMd}
               </ReactMarkdown>
             )
           }
           {
             formVisible && (
               <form 
-                name="membership"
+                name="ruimteHuren"
                 method="post"
-                action="?success=true"
+                action="/success/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
+                v-if="formIsNotSubmitted"
               >
-                <input type="hidden" name="form-name" value="membership" />
+                <input type="hidden" name="form-name" value="ruimteHuren" />
                 <div>
                   <div style={{position: 'relative'}}>
                     <select 
-                      name="gekozenMembership"  
+                      name="gekozenRuimte"  
                       onChange={handleMembershipChange} 
                       value={chosenMembership}
                     >
                       {
-                        contentBlockContext.subscriptions.data.map((membership, index) => (
-                          <option value={membership.attributes.title} key={index}>{membership.attributes.title} (€{membership.attributes.price.toFixed(2).toString().replace(".", ",")})</option>
+                        spaces.map((space, index) => (
+                          <option value={space.attributes.title} key={index}>{space.attributes.title}</option>
                         ))
                       }
                     </select>
                     <svg className="select-arrow-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.424 14.144"><path d="M868.108,427.449l-12.944-9.712,12.944-9.712,1.2,1.6L858.5,417.737l10.812,8.112Z" transform="translate(-408.025 869.309) rotate(-90)" fill="#691e0f"/></svg>
                   </div>
                 </div>
-                <p className="fullname">
+                <p>
                   <input type="text" name="naam" placeholder="Naam*" required />
-                  <input type="text" name="tussenvoegsel" placeholder="Tussenvoegsel" />
                 </p>
                 <p hidden>
                   <label>
                     Vul dit niet in: <input name="bot-field" />
                   </label>
-                </p>
-                <p>
-                  <input type="text" name="achternaam" placeholder="Achternaam*" required />
                 </p>
                 <p>
                   <input type="email" name="email" placeholder="E-Mail*" required />
@@ -362,6 +261,9 @@ export default function Membership({contentBlockContext}: {
                   <input type="text" name="postcode" placeholder="Postcode" />
                   <input type="text" name="huisnummer" placeholder="Huisnr." />
                   <input type="text" name="toevoegingen" placeholder="Toev." />
+                </p>
+                <p>
+                  <textarea name="opmerking" placeholder="Opmerking" />
                 </p>
                 <p>
                   <button type="submit"><span>Verstuur</span><span>&gt;</span></button>
