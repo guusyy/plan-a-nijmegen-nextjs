@@ -157,7 +157,7 @@ export async function getStaticProps() {
       footerColumns,
       homepageData
     },
-    revalidate: 60
+    revalidate: 10
   };
 }
 

@@ -33,6 +33,10 @@ const MembershipRow = styled.div`
     & h3 {
       font-size: 3rem;
     }
+
+    ul {
+      padding-left: 0;
+    }
   }
 
   & .price {
@@ -219,6 +223,8 @@ const ContactRow = styled.div`
 export default function Membership({contentBlockContext}: {
   contentBlockContext: membershipCB
 }) {
+  const formRef = React.createRef<HTMLDivElement>();
+
   const [initiated, setInitiated] = useState(false);
 
   const router = useRouter();
@@ -226,8 +232,6 @@ export default function Membership({contentBlockContext}: {
   const confirmationScreenVisible =
    router.query?.success && router.query.success === "true";
   const formVisible = !confirmationScreenVisible;
-
-  
 
   useEffect(() => {
     if(initiated) return
@@ -253,14 +257,20 @@ export default function Membership({contentBlockContext}: {
       }, 500)
   }, [initiated])
 
-  function handleGoToForm(value: number) {
-    this.formData.gekozenMembership = value;
+  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.subscriptions.data[0].attributes.title);
 
-    this.$refs.form.scrollIntoView({
+  const setGekozenMembership = (value: string) => {
+    setChosenMembership(value);
+
+    formRef.current.scrollIntoView({
       block: "center",
       behavior: "smooth"
     });
   }
+   
+  const handleMembershipChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setChosenMembership(e.target.value);
+  };
 
   return (
     <Container widthFull={true}>
@@ -282,12 +292,12 @@ export default function Membership({contentBlockContext}: {
                   {membership.attributes.perksMd}
                 </ReactMarkdown>
               </ul>
-              <button>{membership.attributes.buttonLabel}</button>
+              <button onClick={() => setGekozenMembership(membership.attributes.title)}>{membership.attributes.buttonLabel}</button>
             </article>
           ))
         }
       </MembershipRow>
-      <ContactRow className="contact-row">
+      <ContactRow className="contact-row" ref={formRef}>
         <div>
           {
             formVisible && (
@@ -308,7 +318,11 @@ export default function Membership({contentBlockContext}: {
                 <input type="hidden" name="form-name" value="membership" />
                 <div>
                   <div style={{position: 'relative'}}>
-                    <select name="gekozenMembership">
+                    <select 
+                      name="gekozenMembership"  
+                      onChange={handleMembershipChange} 
+                      value={chosenMembership}
+                    >
                       {
                         contentBlockContext.subscriptions.data.map((membership, index) => (
                           <option value={membership.attributes.title} key={index}>{membership.attributes.title} (€{membership.attributes.price.toFixed(2).toString().replace(".", ",")})</option>

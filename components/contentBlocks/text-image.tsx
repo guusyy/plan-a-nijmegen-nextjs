@@ -44,6 +44,21 @@ export const Container = styled.div<{ widthFull: boolean }>`
       }
     }
   }
+
+  .pa-contact-businesshours {
+    margin-top: 5rem;
+    display: flex;
+    gap: 15rem;
+    
+    & .pa-contact-workroom p {
+      line-height: 3rem;
+    }
+
+    @media (max-width: 64em) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
 `
 
 const NavButtons = styled.div`
