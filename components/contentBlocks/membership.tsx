@@ -280,7 +280,7 @@ export default function Membership({contentBlockContext}: {
     const formData = new FormData(myForm);
     
     fetch("/", {
-      method: "POST",
+      method: "GET",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
     })

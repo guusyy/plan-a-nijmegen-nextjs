@@ -138,7 +138,7 @@ export default function Membership({contentBlockContext}: {
     const formData = new FormData(myForm);
     
     fetch("/", {
-      method: "POST",
+      method: "GET",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
     })
@@ -240,6 +240,7 @@ export default function Membership({contentBlockContext}: {
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
               >
                 <input type="hidden" name="form-name" value="ruimteHuren" />
                 <div>
