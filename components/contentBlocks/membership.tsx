@@ -232,12 +232,6 @@ export default function Membership({contentBlockContext}: {
 
   const [initiated, setInitiated] = useState(false);
 
-  const router = useRouter();
-
-  const confirmationScreenVisible =
-   router.query?.success && router.query.success === "true";
-  const formVisible = !confirmationScreenVisible;
-
   useEffect(() => {
     if(initiated) return
     setInitiated(true);
@@ -277,6 +271,32 @@ export default function Membership({contentBlockContext}: {
     setChosenMembership(e.target.value);
   };
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    event.preventDefault();
+
+    const myForm = event.target as HTMLFormElement;
+    const formData = new FormData(myForm);
+    
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => {
+        setFormSubmitted(true);
+
+        anime({
+          targets: '.succes-message',
+          translateY: [-10, 0],
+          opacity: [0, 100],
+          duration: 1000
+        });
+      })
+      .catch((error) => alert(error));
+  }
+
   return (
     <Container widthFull={true}>
       <IntroRow>
@@ -305,20 +325,20 @@ export default function Membership({contentBlockContext}: {
       <ContactRow className="contact-row" ref={formRef}>
         <div>
           {
-            formVisible && (
+            !formSubmitted && (
               <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
                 {contentBlockContext.formTextMd}
               </ReactMarkdown>
             )
           }
           {
-            formVisible && (
+            !formSubmitted && (
               <form 
                 name="membership"
                 method="post"
-                action="?success=true"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
               >
                 <input type="hidden" name="form-name" value="membership" />
                 <div>
@@ -369,7 +389,7 @@ export default function Membership({contentBlockContext}: {
               </form>
             )
           }
-          <div className={`succes-message ${confirmationScreenVisible ? '' : 'hidden'}`}>
+          <div className={`succes-message ${formSubmitted ? '' : 'hidden'}`}>
             <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
               {contentBlockContext.formSubmitTextMd}
             </ReactMarkdown>
