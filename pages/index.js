@@ -219,6 +219,8 @@ export default function Home({ navItems, footerColumns, homepageData }) {
                 width={homepageData.heroImages.data[randomImageIndex].attributes.width}
                 height={homepageData.heroImages.data[randomImageIndex].attributes.height}
                 alt="Sfeerbeeld van Plan A Nijmegen"
+                placeholder="blur"
+                blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                 priority
                 sizes="
                   100vw

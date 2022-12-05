@@ -177,6 +177,8 @@ export default function Membership({contentBlockContext}: {
                         width={space.attributes.image.data[0].attributes.width}
                         height={space.attributes.image.data[0].attributes.height}
                         alt={`Afbeelding van ${space.attributes.title}`}
+                        placeholder="blur"
+                        blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                         sizes="
                           (max-width: 768px) 100vw,
                           50vw
@@ -201,6 +203,8 @@ export default function Membership({contentBlockContext}: {
                                   width={image.attributes.width}
                                   height={image.attributes.height}
                                   alt={`Afbeelding ${idx} van ${space.attributes.title}`}
+                                  placeholder="blur"
+                                  blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                                   sizes="
                                     (max-width: 768px) 100vw,
                                     50vw

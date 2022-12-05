@@ -163,6 +163,8 @@ export default function Community({contentBlockContext}: {
                         height={member.attributes.image.data.attributes.height}
                         alt={'Afbeelding van: ' + member.attributes.fullName}
                         objectFit={'cover'}
+                        placeholder="blur"
+                        blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                         sizes="
                           (max-width: 768px) 20vw,
                           50vw
