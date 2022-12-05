@@ -227,20 +227,19 @@ export default function Membership({contentBlockContext}: {
       <ContactRow className="contact-row" ref={formRef}>
         <div>
           {
-            formSubmitted && (
+            !formSubmitted && (
               <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
                 {contentBlockContext.formIntroTextMd}
               </ReactMarkdown>
             )
           }
           {
-            formSubmitted && (
+            !formSubmitted && (
               <form 
                 name="ruimteHuren"
-                method="post"
+                method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                v-if="formIsNotSubmitted"
               >
                 <input type="hidden" name="form-name" value="ruimteHuren" />
                 <div>

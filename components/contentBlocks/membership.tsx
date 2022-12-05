@@ -335,7 +335,7 @@ export default function Membership({contentBlockContext}: {
             !formSubmitted && (
               <form 
                 name="membership"
-                method="post"
+                method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
