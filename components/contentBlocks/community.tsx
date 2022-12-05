@@ -135,6 +135,10 @@ export default function Community({contentBlockContext}: {
     });
   }, [initiated])
 
+  const test = (e) => {
+    console.log(e);
+  }
+
   return (
     <Container widthFull={true}>
       <div className="column">

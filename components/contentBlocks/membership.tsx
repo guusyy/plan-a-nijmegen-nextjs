@@ -279,7 +279,7 @@ export default function Membership({contentBlockContext}: {
     const myForm = event.target as HTMLFormElement;
     const formData = new FormData(myForm);
     
-    fetch("/api/hello", {
+    fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
