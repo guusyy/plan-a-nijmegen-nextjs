@@ -213,7 +213,7 @@ export default function Membership({contentBlockContext}: {
                       </Swiper>
                     )
                   }
-                  <h3>{space.attributes.title}</h3>
+                  <h2>{space.attributes.title}</h2>
                   <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte workspace-description">
                     {space.attributes.descriptionMd}
                   </ReactMarkdown>

@@ -20,8 +20,8 @@ export default function Navbar({ navItems }) {
     <NavbarContainer className="navbar-container">
       <LogoHolder className="logo-holder">
         <div className="logo-left-holder">
-          <Link href="/" aria-label="Home">
-            <a>
+          <Link href="/">
+            <a aria-label="Home">
               <Image 
                 layout="intrinsic" 
                 width={64}
@@ -34,8 +34,8 @@ export default function Navbar({ navItems }) {
         </div>
         <div className="pa-logo-border"></div>
         <div className="logo-right-holder">
-          <Link href="/" aria-label="Home">
-            <a>
+          <Link href="/">
+            <a aria-label="Home">
               <Image 
                 layout="intrinsic" 
                 width={24}
