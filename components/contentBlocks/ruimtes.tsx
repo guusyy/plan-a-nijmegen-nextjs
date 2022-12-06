@@ -29,7 +29,7 @@ const WorkspaceRow = styled.div`
     padding: 1rem 0rem;
     opacity: 0;
 
-    & h3 {
+    & h2 {
       margin: 4rem 0 1rem 0;
       font-size: 3rem;
     }
@@ -137,7 +137,7 @@ export default function Membership({contentBlockContext}: {
     const myForm = event.target as HTMLFormElement;
     const formData = new FormData(myForm);
     
-    fetch("/", {
+    fetch("/api/hello", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
@@ -178,7 +178,8 @@ export default function Membership({contentBlockContext}: {
                         height={space.attributes.image.data[0].attributes.height}
                         alt={`Afbeelding van ${space.attributes.title}`}
                         placeholder="blur"
-                        blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                        priority
                         sizes="
                           (max-width: 768px) 100vw,
                           50vw
@@ -204,7 +205,8 @@ export default function Membership({contentBlockContext}: {
                                   height={image.attributes.height}
                                   alt={`Afbeelding ${idx} van ${space.attributes.title}`}
                                   placeholder="blur"
-                                  blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                                  blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                                  priority={idx === 0}
                                   sizes="
                                     (max-width: 768px) 100vw,
                                     50vw

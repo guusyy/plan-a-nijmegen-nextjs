@@ -164,7 +164,8 @@ export default function Community({contentBlockContext}: {
                         alt={'Afbeelding van: ' + member.attributes.fullName}
                         objectFit={'cover'}
                         placeholder="blur"
-                        blurDataURL={'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+OvBwACmQEUUJBKBwAAAABJRU5ErkJggg=='}
+                        priority
                         sizes="
                           (max-width: 768px) 20vw,
                           50vw
