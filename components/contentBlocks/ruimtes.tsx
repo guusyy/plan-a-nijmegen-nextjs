@@ -114,10 +114,10 @@ export default function Membership({contentBlockContext}: {
       }, 500)
   }, [initiated])
 
-  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.spaces.data[0].attributes.title);
+  const [chosenRuimte, setChosenRuimte] = useState(contentBlockContext.spaces.data[0].attributes.title);
 
-  const setGekozenMembership = (value: string) => {
-    setChosenMembership(value);
+  const setGekozenRuimte = (value: string) => {
+    setChosenRuimte(value);
 
     formRef.current.scrollIntoView({
       block: "center",
@@ -125,8 +125,8 @@ export default function Membership({contentBlockContext}: {
     });
   }
    
-  const handleMembershipChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setChosenMembership(e.target.value);
+  const handleRuimteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setChosenRuimte(e.target.value);
   };
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -223,7 +223,7 @@ export default function Membership({contentBlockContext}: {
                   <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte workspace-description">
                     {space.attributes.descriptionMd}
                   </ReactMarkdown>
-                  <button>{space.attributes.buttonLabel}</button>
+                  <button onClick={() => setGekozenRuimte(space.attributes.title)}>{space.attributes.buttonLabel}</button>
                 </div>
               ))
             }
@@ -253,8 +253,8 @@ export default function Membership({contentBlockContext}: {
                   <div style={{position: 'relative'}}>
                     <select 
                       name="gekozenRuimte"  
-                      onChange={handleMembershipChange} 
-                      value={chosenMembership}
+                      onChange={handleRuimteChange} 
+                      value={chosenRuimte}
                     >
                       {
                         spaces.map((space, index) => (
