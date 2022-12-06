@@ -11,6 +11,7 @@ specifiers:
   eslint-config-next: 12.3.1
   graphql: ^16.6.0
   next: 12.3.1
+  next-cloudinary: ^1.2.0
   postcss: ^8.4.16
   react: 18.2.0
   react-dom: 18.2.0
@@ -27,6 +28,7 @@ dependencies:
   animejs: 3.2.1
   graphql: 16.6.0
   next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
+  next-cloudinary: 1.2.0_next@12.3.1+react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-markdown: 8.0.3_iapumuv4e6jcjznwuxpf4tt22e
@@ -217,6 +219,18 @@ packages:
       '@babel/helper-string-parser': 7.18.10
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@cloudinary/transformation-builder-sdk/1.1.0:
+    resolution: {integrity: sha512-BqhTqIwPTyQ4hE0NjKXf/bF7VAjwe2ZHNuypdG6oQ6bDoiLTOSzdAZsg0jFndureQiVPavBKOzQTjHImp45z/g==}
+    dependencies:
+      '@cloudinary/url-gen': 1.8.7
+    dev: false
+
+  /@cloudinary/url-gen/1.8.7:
+    resolution: {integrity: sha512-07Hqy3weuuRm8ZCwn/HejrfiC8MiC/dK13IWm01FslhWek55jUTsKqR5xMwYQPX8+MWpLXd/EI/FiwqWaB5dDA==}
+    dependencies:
+      '@cloudinary/transformation-builder-sdk': 1.1.0
     dev: false
 
   /@emotion/is-prop-valid/1.2.0:
@@ -2268,6 +2282,17 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-cloudinary/1.2.0_next@12.3.1+react@18.2.0:
+    resolution: {integrity: sha512-qQ1OpEsZ6EJnzHyzzEOJj4Lj5sEleVtbJNAA4rFq9YwA8DtiL4SgQxH4fi0Ze0/ZaC4FTEwG2gcUKr8DjncJlg==}
+    peerDependencies:
+      next: ^12 || ^13
+      react: ^17 || ^18
+    dependencies:
+      '@cloudinary/url-gen': 1.8.7
+      next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
+      react: 18.2.0
+    dev: false
 
   /next/12.3.1_2mygebwfgdyopr3fy2qddu2eli:
     resolution: {integrity: sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==}

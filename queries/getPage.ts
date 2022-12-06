@@ -7,6 +7,10 @@ export type StrapiImage = {
     url: string
     width: string
     height: string
+    provider_metadata: {
+      public_id: string
+      resource_type: string
+    }
   }
 }
 
@@ -124,6 +128,8 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
                               url
                               width
                               height
+                              provider_metadata
+                              ext
                             }
                           }
                         }
@@ -158,6 +164,7 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
                               url
                               width
                               height
+                              provider_metadata
                             }
                           }
                         }
@@ -180,6 +187,7 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
                         url
                         width
                         height
+                        provider_metadata
                       }
                     }
                   }

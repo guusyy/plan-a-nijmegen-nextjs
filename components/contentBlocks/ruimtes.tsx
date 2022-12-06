@@ -14,6 +14,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { CldImage } from 'next-cloudinary';
+
 const WorkspaceRow = styled.div`
   display: grid;
   max-width: 100%;
@@ -172,14 +174,13 @@ export default function Membership({contentBlockContext}: {
                 <div className="workspace-item" key={idx}>
                   {
                     spaces.length < 2 ? (
-                      <Image
-                        src={space.attributes.image.data[0].attributes.url}
+                      <CldImage
+                        src={space.attributes.image.data[0].attributes.provider_metadata.public_id}
                         width={space.attributes.image.data[0].attributes.width}
                         height={space.attributes.image.data[0].attributes.height}
                         alt={`Afbeelding van ${space.attributes.title}`}
                         placeholder="blur"
                         blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
-                        priority
                         sizes="
                           (max-width: 768px) 100vw,
                           50vw
@@ -199,8 +200,8 @@ export default function Membership({contentBlockContext}: {
                           space.attributes.image.data.map((image, idx) => (
                             <SwiperSlide key={idx} >
                               <div className="relative">
-                                <Image
-                                  src={image.attributes.url}
+                                <CldImage
+                                  src={image.attributes.provider_metadata.public_id}
                                   width={image.attributes.width}
                                   height={image.attributes.height}
                                   alt={`Afbeelding ${idx} van ${space.attributes.title}`}

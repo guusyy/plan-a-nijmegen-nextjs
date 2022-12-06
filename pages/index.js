@@ -9,6 +9,7 @@ import rehypeRaw from 'rehype-raw';
 import styled from 'styled-components';
 import anime from 'animejs'
 import { useEffect } from 'react';
+import { CldImage } from 'next-cloudinary';
 
 const PAContainer = styled.div`
   display: flex;
@@ -214,7 +215,7 @@ export default function Home({ navItems, footerColumns, homepageData }) {
         {
           homepageData.heroImages.data[0] && (
             <div className="hero-image">
-              <Image
+              <CldImage
                 src={homepageData.heroImages.data[randomImageIndex].attributes.url}
                 width={homepageData.heroImages.data[randomImageIndex].attributes.width}
                 height={homepageData.heroImages.data[randomImageIndex].attributes.height}

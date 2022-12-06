@@ -12,6 +12,7 @@ import 'swiper/css/navigation';
 
 import { textAndImage } from "../../queries/getPage"
 import Image from "next/image"
+import { CldImage } from 'next-cloudinary';
 
 export const Container = styled.div<{ widthFull: boolean }>`
   display: grid;
@@ -108,7 +109,7 @@ export default function TextAndImage({contentBlockContext}: {
             <div className="image-holder">
               {
                 contentBlockContext.images.data.length < 2 ? (
-                  <Image
+                  <CldImage
                     src={contentBlockContext.images.data[0].attributes.url}
                     width={contentBlockContext.images.data[0].attributes.width}
                     height={contentBlockContext.images.data[0].attributes.height}
@@ -135,7 +136,7 @@ export default function TextAndImage({contentBlockContext}: {
                       contentBlockContext.images.data.map((image, idx) => (
                         <SwiperSlide key={idx} >
                           <div className="relative">
-                            <Image
+                            <CldImage
                               src={image.attributes.url}
                               width={image.attributes.width}
                               height={image.attributes.height}

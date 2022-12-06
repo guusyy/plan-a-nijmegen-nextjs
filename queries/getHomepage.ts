@@ -20,6 +20,7 @@ export type image = {
       url: string;
       width: string;
       height: string;
+      provider_metadata: string;
     }
   }
 }
@@ -45,6 +46,7 @@ export default async function getHomePage(): Promise<homePageData> {
                     url
                     width
                     height
+                    provider_metadata
                   }
                 }
               }

@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { community } from "../../queries/getPage"
 import anime from 'animejs'
 import { Container } from "./text-image"
+import { CldImage } from 'next-cloudinary';
 
 const CommunityGrid = styled.div`
   margin: 5rem 0;
@@ -157,14 +158,14 @@ export default function Community({contentBlockContext}: {
                     tabIndex={0}
                   >
                     <div>
-                      <Image
+                      <CldImage
                         src={member.attributes.image.data.attributes.url}
                         width={member.attributes.image.data.attributes.width}
                         height={member.attributes.image.data.attributes.height}
                         alt={'Afbeelding van: ' + member.attributes.fullName}
-                        objectFit={'cover'}
                         placeholder="blur"
-                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+OvBwACmQEUUJBKBwAAAABJRU5ErkJggg=='}
+                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                        objectFit={'cover'}
                         priority
                         sizes="
                           (max-width: 768px) 20vw,
