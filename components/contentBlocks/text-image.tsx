@@ -114,7 +114,7 @@ export default function TextAndImage({contentBlockContext}: {
                     height={contentBlockContext.images.data[0].attributes.height}
                     alt="Sfeerbeeld van Plan A Nijmegen"
                     placeholder="blur"
-                    blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                    blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                     priority
                     sizes="
                       (max-width: 768px) 100vw,
@@ -141,7 +141,7 @@ export default function TextAndImage({contentBlockContext}: {
                               height={image.attributes.height}
                               alt="Sfeerbeeld van Plan A Nijmegen"
                               placeholder="blur"
-                              blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                              blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                               priority={idx === 0}
                               sizes="
                                 (max-width: 768px) 100vw,

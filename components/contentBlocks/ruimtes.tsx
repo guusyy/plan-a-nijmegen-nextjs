@@ -137,7 +137,7 @@ export default function Membership({contentBlockContext}: {
     const myForm = event.target as HTMLFormElement;
     const formData = new FormData(myForm);
     
-    fetch("/api/hello", {
+    fetch("/favicon.ico", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
@@ -178,7 +178,7 @@ export default function Membership({contentBlockContext}: {
                         height={space.attributes.image.data[0].attributes.height}
                         alt={`Afbeelding van ${space.attributes.title}`}
                         placeholder="blur"
-                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                         priority
                         sizes="
                           (max-width: 768px) 100vw,
@@ -205,7 +205,7 @@ export default function Membership({contentBlockContext}: {
                                   height={image.attributes.height}
                                   alt={`Afbeelding ${idx} van ${space.attributes.title}`}
                                   placeholder="blur"
-                                  blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+M/AwAC5gFhWwvU8wAAAABJRU5ErkJggg=='}
+                                  blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
                                   priority={idx === 0}
                                   sizes="
                                     (max-width: 768px) 100vw,
