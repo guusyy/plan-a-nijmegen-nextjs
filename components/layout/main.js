@@ -2,19 +2,6 @@ import Navbar from '../navbar'
 import Footer from '../footer'
 import Head from 'next/head'
 
-import styled from 'styled-components';
-
-const ContentContainer = styled.div`
-  margin: 4rem 5rem 4rem 8.5rem;
-  height: 100%;
-  @media (max-width: 40em) {
-    margin: 0 3.5rem 4rem 6.5rem;
-  }
-  @media (max-width: 64em) {
-    margin: 0 3.5rem 4rem 6.5rem;
-  }
-`;
-
 export default function MainLayout({ children, navItems, footerColumns, title }) {
   return (
     <>
@@ -31,11 +18,12 @@ export default function MainLayout({ children, navItems, footerColumns, title })
       </Head>
       <div>
         <Navbar navItems={navItems} />
-        <ContentContainer>
+        <div className="content-container">
           <main>{children}</main>
           <Footer footerColumns={footerColumns} />
-        </ContentContainer>
+        </div>
       </div>
+      <script data-goatcounter="https://plananijmegen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     </>
   )
 }

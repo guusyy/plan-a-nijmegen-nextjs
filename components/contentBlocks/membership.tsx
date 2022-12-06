@@ -141,6 +141,13 @@ export const ContactRow = styled.div`
       pointer-events: none;
     }
 
+    label {
+      font-size: 18px;
+      padding: 0.5rem 1rem 0;
+      line-height: 1;
+      display: block;
+    }
+
     & select, input, textarea {
       font-size: 2rem;
       width: 100%;
@@ -376,7 +383,8 @@ export default function Membership({contentBlockContext}: {
                   <input type="text" name="telefoon" placeholder="Telefoon*" required />
                 </p>
                 <p>
-                  <input type="date" name="geboortedatum" placeholder="Geboortedatum" />
+                  <label htmlFor="geboortedatum">Geboortedatum:</label>
+                  <input type="date" name="geboortedatum" placeholder="Geboortedatum" id="geboortedatum" />
                 </p>
                 <p className="address-inputs">
                   <input type="text" name="postcode" placeholder="Postcode" />

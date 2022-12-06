@@ -28,6 +28,19 @@ img {
   height: auto;
 }
 
+.content-container {
+  margin: 4rem 5rem 4rem 8.5rem;
+  height: 100%;
+
+  @media (max-width: 40em) {
+    margin: 0 3.5rem 4rem 6.5rem;
+  }
+  
+  @media (max-width: 64em) {
+    margin: 0 3.5rem 4rem 6.5rem;
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 0;

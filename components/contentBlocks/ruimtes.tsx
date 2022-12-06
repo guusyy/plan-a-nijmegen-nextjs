@@ -280,7 +280,8 @@ export default function Membership({contentBlockContext}: {
                   <input type="text" name="telefoon" placeholder="Telefoon*" required />
                 </p>
                 <p>
-                  <input type="date" name="geboortedatum" placeholder="Geboortedatum" />
+                <label htmlFor="gewensteDatum">Gewenste datum:</label>
+                  <input type="date" name="gewensteDatum" placeholder="Gewenste datum" id="gewensteDatum" />
                 </p>
                 <p className="address-inputs">
                   <input type="text" name="postcode" placeholder="Postcode" />

@@ -10,7 +10,7 @@ export type StrapiImage = {
   }
 }
 
-export type contentBlock = textAndImage | community | membershipCB | ruimteCB;
+export type contentBlock = textAndImage | community | membershipCB | ruimteCB | welkomsActieCB;
 
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
@@ -83,6 +83,12 @@ export type ruimteCB = {
   }
 }
 
+export type welkomsActieCB = {
+  blockType: "ComponentContentblockWelkomsactie"
+  introText: string
+  formSubmitTextMd: string
+}
+
 export type StrapiPage = {
   title: string;
   contentBlocks: contentBlock[]
@@ -98,6 +104,10 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
               title:Titel
               contentBlocks:Contentblokken {
                 blockType:__typename
+                ... on ComponentContentblockWelkomsactie {
+                  introText:introTekst
+                  formSubmitTextMd:succesBerichtFormulier
+                }
                 ... on ComponentContentblockRuimteSelectie {
                   introTextMd:IntroTekst
                   formIntroTextMd:FormulierIntroTekst

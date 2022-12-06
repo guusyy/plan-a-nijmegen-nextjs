@@ -11,6 +11,7 @@ import getPages from "../queries/getPages";
 
 import { StrapiPage } from "../queries/getPage";
 import { InferGetStaticPropsType } from "next";
+import Welkomsactie from "../components/contentBlocks/welkomsactie";
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -49,6 +50,7 @@ export default function DetailPage({
 
   const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
     switch(contentBlock.blockType) {
+        case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={idx} />;
         case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
         case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
         case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
