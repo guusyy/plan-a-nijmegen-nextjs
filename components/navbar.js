@@ -4,14 +4,11 @@ import { useState } from "react";
 
 import styled from 'styled-components';
 
-const LogoHolder = styled.div`
-`
+const LogoHolder = styled.div``
 
-const NavbarContainer = styled.div`
-`;
+const NavbarContainer = styled.div``;
 
-const MobileNavContainer = styled.div`
-`
+const MobileNavContainer = styled.div``
 
 export default function Navbar({ navItems }) {
   const [navigationPanelVisible, setNavigationPanelVisible] = useState(false);
@@ -49,20 +46,7 @@ export default function Navbar({ navItems }) {
       </LogoHolder>
 
       <nav className="pa-navigation">
-        {
-          navigationPanelVisible && (
-            <MobileNavContainer className="mobile-nav-container">
-              <ul className="pa-navigation-list-mobile">
-                {
-                  navItems.map((item, idx) => (
-                    <li key={idx}><Link href={item.slug}>{item.title}</Link></li>
-                  ))
-                }
-              </ul>
-            </MobileNavContainer>
-          )
-        }
-        <ul className="pa-navigation-list">
+        <ul className={navigationPanelVisible ? 'pa-navigation-list active' : 'pa-navigation-list'}>
           {
             navItems.map((item, idx) => (
               <li key={idx}><Link href={item.slug}>{item.title}</Link></li>
