@@ -8,8 +8,6 @@ const LogoHolder = styled.div``
 
 const NavbarContainer = styled.div``;
 
-const MobileNavContainer = styled.div``
-
 export default function Navbar({ navItems }) {
   const [navigationPanelVisible, setNavigationPanelVisible] = useState(false);
 
@@ -49,7 +47,7 @@ export default function Navbar({ navItems }) {
         <ul className={navigationPanelVisible ? 'pa-navigation-list active' : 'pa-navigation-list'}>
           {
             navItems.map((item, idx) => (
-              <li key={idx}><Link href={item.slug}>{item.title}</Link></li>
+              <li key={idx} onClick={() => setNavigationPanelVisible(false)}><Link href={item.slug}>{item.title}</Link></li>
             ))
           }
         </ul>
