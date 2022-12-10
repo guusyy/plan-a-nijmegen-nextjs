@@ -150,6 +150,11 @@ export async function getStaticProps() {
   const navItems = await getPages();
   const footerColumns = await getFooterColumns();
   const homepageData = await getHomePage();
+
+  if (!navItems || !footerColumns || !homepageData) {
+    throw new Error(`Failed to fetch navItems, footerColumns or homepageData`)
+  }
+
   return {
     props: {
       navItems: navItems
@@ -157,8 +162,7 @@ export async function getStaticProps() {
         .sort((a, b) => a.position - b.position),
       footerColumns,
       homepageData
-    },
-    revalidate: 10
+    }
   };
 }
 

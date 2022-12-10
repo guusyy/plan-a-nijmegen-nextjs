@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes opacity-animate {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;	
+	}
+}
+
+/* animate new box */
+.column {
+	animation: opacity-animate .5s ease-out;
+}
+
 @import 'variables.scss';
 @import 'fonts.scss';
 @import 'typography.scss';

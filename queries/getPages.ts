@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { ApolloError, gql } from "@apollo/client";
 import client from "../apollo-client";
 
 type NavItem = {
@@ -8,7 +8,7 @@ type NavItem = {
   slug: string;
 }
 
-export default async function getPages(): Promise<NavItem[]> {
+export default async function getPages(): Promise<NavItem[] > {
   const { data } = await client.query({
     query: gql`
       query {
@@ -26,7 +26,7 @@ export default async function getPages(): Promise<NavItem[]> {
       }
     `,
   });
-  
+
   const navItems = data.pages.data.map(page => {
     return {
       show: page.attributes.show,

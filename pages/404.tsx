@@ -9,14 +9,18 @@ import Link from "next/link";
 export async function getStaticProps(context) {
   const navItems = await getPages();
   const footerColumns = await getFooterColumns();
+
+  if (!navItems || !footerColumns) {
+    throw new Error(`Failed to fetch navItems or footerColumns`)
+  }
+
   return {
     props: {
       navItems: navItems
         .filter(page => page.show)
         .sort((a, b) => a.position-b.position),
       footerColumns,
-    },
-    revalidate: 10
+    }
  };
 }
 

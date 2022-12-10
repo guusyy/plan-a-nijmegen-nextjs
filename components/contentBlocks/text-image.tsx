@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
@@ -9,9 +9,9 @@ import { EffectFade, Navigation, Lazy } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import anime from 'animejs'
 
 import { textAndImage } from "../../queries/getPage"
-import Image from "next/image"
 import { CldImage } from 'next-cloudinary';
 
 export const Container = styled.div<{ widthFull: boolean }>`
@@ -75,6 +75,16 @@ const NavButtons = styled.div`
 export default function TextAndImage({contentBlockContext}: {
   contentBlockContext: textAndImage
 }) {
+  const [initiated, setInitiated] = useState(false);
+  const [initialSlide, setInitialSlide] = useState(0);
+  
+  useEffect(() => {
+    setInitialSlide(0);
+
+    if(initiated) return
+    setInitiated(true);
+  }, [initiated])
+
   return (
     <Container widthFull={contentBlockContext.noImageFullWidth}>
       <div className="column rte">
@@ -104,7 +114,7 @@ export default function TextAndImage({contentBlockContext}: {
       </div>
 
       {
-        contentBlockContext.images.data.length > 0 && (
+        contentBlockContext.images.data.length > 0 && initiated && (
           <div className="column swiper-holder">
             <div className="image-holder">
               {
@@ -131,6 +141,7 @@ export default function TextAndImage({contentBlockContext}: {
                     effect={"fade"}
                     navigation={true}
                     lazy={true}
+                    initialSlide={initialSlide}
                   >
                     {
                       contentBlockContext.images.data.map((image, idx) => (

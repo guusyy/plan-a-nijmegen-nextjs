@@ -2,6 +2,8 @@ import Navbar from '../navbar'
 import Footer from '../footer'
 import Head from 'next/head'
 
+import { CldOgImage } from 'next-cloudinary';
+
 export default function MainLayout({ children, navItems, footerColumns, title }) {
   return (
     <>
@@ -15,6 +17,13 @@ export default function MainLayout({ children, navItems, footerColumns, title })
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f0250a" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff"></meta>
+        
+        <meta name="description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten, eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om gezellig te borrelen en dineren."></meta>
+        <meta property="og:description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten en eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om te borrelen en dineren. "></meta>
+        <meta name="twitter:description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten en eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om te borrelen en dineren. "></meta>
+        <meta name="image" content="https://res.cloudinary.com/djwitcyyb/image/upload/v1650438043/DSC_04055_847da76efe_63d568e44f.webp"></meta>
+        <meta property="og:image" content="https://res.cloudinary.com/djwitcyyb/image/upload/v1650438043/DSC_04055_847da76efe_63d568e44f.webp"></meta>
+        <meta name="twitter:image" content="https://res.cloudinary.com/djwitcyyb/image/upload/v1650438043/DSC_04055_847da76efe_63d568e44f.webp"></meta>
       </Head>
       <div>
         <Navbar navItems={navItems} />
