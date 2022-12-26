@@ -12,7 +12,7 @@ export default async function getPages(): Promise<NavItem[] > {
   const { data } = await client.query({
     query: gql`
       query {
-        pages:paginas {
+        pages:paginas (pagination: { limit: 200 }) {
           data {
             id
             attributes {
