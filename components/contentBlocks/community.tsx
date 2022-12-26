@@ -168,8 +168,11 @@ export default function Community({contentBlockContext}: {
                         objectFit={'cover'}
                         priority
                         sizes="
-                          (max-width: 768px) 20vw,
-                          50vw
+                          (max-width: 500px) 100vw,
+                          (max-width: 900px) 50vw,
+                          (max-width: 1220px) 33vw,
+                          (max-width: 1500px) 25vw,
+                          20vw
                         "
                       />
                     </div>
