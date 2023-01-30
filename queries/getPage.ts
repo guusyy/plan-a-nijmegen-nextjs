@@ -142,7 +142,7 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
                   introTextMd:IntroTekst
                   formTextMd:FormulierIntroTekst
                   formSubmitTextMd:FormulierVerzondenBericht
-                  subscriptions:abonnementen {
+                  subscriptions:abonnementen (pagination: {limit: 100}) {
                     data {
                       attributes {
                         title:Titel
@@ -155,7 +155,7 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
                 }
                 ... on ComponentContentblockCommunity {
                   mdText:Tekst
-                  members:community_members {
+                  members:community_members (pagination: {limit: 500}) {
                     data {
                       attributes {
                         image:Afbeelding {
