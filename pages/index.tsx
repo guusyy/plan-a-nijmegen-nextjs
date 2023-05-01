@@ -1,7 +1,7 @@
 import MainLayout from '../components/layout/main'
-import getPages from '../queries/getPages';
-import getFooterColumns from '../queries/getFooterColumns';
-import getHomePage from '../queries/getHomepage';
+import getPages, { NavItem } from '../queries/getPages';
+import getFooterColumns, { FooterColumn } from '../queries/getFooterColumns';
+import getHomePage, { homePageData } from '../queries/getHomepage';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
@@ -166,7 +166,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ navItems, footerColumns, homepageData }) {
+export default function Home({ navItems, footerColumns, homepageData }: { navItems: NavItem[], footerColumns: FooterColumn[], homepageData: homePageData}) {
   const randomImageIndex = Math.floor(Math.random() * homepageData.heroImages.data.length);
 
   useEffect(() => {
@@ -206,7 +206,7 @@ export default function Home({ navItems, footerColumns, homepageData }) {
 
 
   return (
-    <MainLayout navItems={navItems} footerColumns={footerColumns}>
+    <MainLayout title="" navItems={navItems} footerColumns={footerColumns}>
       <PAContainer>
         <div className="intro-text">
           <div className="intro-rte">
@@ -238,8 +238,8 @@ export default function Home({ navItems, footerColumns, homepageData }) {
         <div className="pa-quickbuttons-container">
           {
             homepageData.buttons?.map(button => (
-              <Link href={button.linkedPage.data.attributes.slug ?? button.externalUrl} key={button.label}>
-                <a className="pa-quickbutton">
+              <Link href={button.linkedPage.data?.attributes.slug ?? button.externalUrl} key={button.label}>
+                <a className="pa-quickbutton" target={button.externalUrl ? '_blank' : '_self'}>
                   <h2 className="pa-label">{ button.label }</h2>
                   <span className="pa-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.868 29.5">
@@ -252,13 +252,13 @@ export default function Home({ navItems, footerColumns, homepageData }) {
           }
         </div>
         
-        <div className="pa-contact-info">
+        {/* <div className="pa-contact-info">
           <div className="intro-contact">
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
               {homepageData.contactDetails}
             </ReactMarkdown>
           </div>
-        </div>
+        </div> */}
       </PAContainer>
     </MainLayout >
   )

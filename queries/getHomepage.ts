@@ -15,21 +15,20 @@ export type button = {
 }
 
 export type image = {
-  data: {
-    attributes: {
-      url: string;
-      width: string;
-      height: string;
-      provider_metadata: string;
-    }
+  attributes: {
+    url: string;
+    width: string;
+    height: string;
+    provider_metadata: string;
   }
 }
 
-type homePageData = {
+export type homePageData = {
   introText: string;
-  heroImages: image[];
+  heroImages: {
+    data: image[]
+  }
   buttons: button[];
-  contactDetails: string;
 }
 
 export default async function getHomePage(): Promise<homePageData> {
@@ -40,7 +39,7 @@ export default async function getHomePage(): Promise<homePageData> {
           data {
             attributes {
               introText:IntroTekst
-              heroImages:UitgelichteAfbeeldingRandomGekozen {
+              heroImages:UitgelichteAfbeeldingen {
                 data {
                   attributes {
                     url
@@ -61,7 +60,6 @@ export default async function getHomePage(): Promise<homePageData> {
                 }
                 externalUrl:ExterneLink
               }
-              contactDetails:Contactgegevens
             }
           }
         }
