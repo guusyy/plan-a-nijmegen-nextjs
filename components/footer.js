@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from 'rehype-raw'
 import styled from "styled-components"
 
-const PageFooter = styled.footer`{
+const PageFooter = styled.footer`
   h2 {
     letter-spacing: -1px !important;
   }
@@ -20,7 +20,7 @@ const PageFooter = styled.footer`{
   h3 {
     margin-top: 20px;
   }
-}`
+`
 
 export default function Footer({ footerColumns }) {
   return (
