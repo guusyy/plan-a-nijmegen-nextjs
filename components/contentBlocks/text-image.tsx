@@ -96,6 +96,9 @@ export default function TextAndImage({ contentBlockContext }: {
             </NavButtons>
           )
         }
+        <ReactMarkdown className={`mt-14`} rehypePlugins={[rehypeRaw]}>
+          {contentBlockContext.textBelow}
+        </ReactMarkdown>
       </div>
 
       {

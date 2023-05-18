@@ -11,7 +11,7 @@ import { CldImage } from 'next-cloudinary';
 const CommunityGrid = styled.div`
   margin: calc(5rem / 1.6) 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(25rem / 1.6), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(calc(22rem / 1.6), 1fr));
   gap: calc(3rem / 1.6);
 
   & .community-item {

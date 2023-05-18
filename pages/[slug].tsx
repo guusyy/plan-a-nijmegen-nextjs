@@ -46,15 +46,15 @@ export async function getStaticProps(context) {
  };
 }
 
-export const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
+export const getContentBlockComponent = (contentBlock: contentBlock, idx: number, title: string) => {
   switch(contentBlock.blockType) {
-      case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={idx} />;
-      case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
-      case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
-      case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
-      case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
-      case "ComponentContentblockTekstTweeKolommen": return <TextTwoCols contentBlockContext={contentBlock} key={idx}  />;
-      default:                                              return <h1 key={idx} >Geen contentblock template</h1>
+      case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      case "ComponentContentblockTekstTweeKolommen": return <TextTwoCols contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      default:                                              return <h1 key={`${idx}-${title}`} >Geen contentblock template</h1>
     }
 }
 
@@ -77,11 +77,13 @@ export default function DetailPage({
 
   return (
     <MainLayout navItems={navItems} footerColumns={footerColumns} title={page.title}>
-      {
-        page.contentBlocks.map((contentBlock, idx) => (
-          getContentBlockComponent(contentBlock, idx)
-        ))
-      }
+      <div className="space-y-20">
+        {
+          page.contentBlocks.map((contentBlock, idx) => (
+            getContentBlockComponent(contentBlock, idx, page.title)
+          ))
+        }
+      </div>
     </MainLayout>
   )
 }

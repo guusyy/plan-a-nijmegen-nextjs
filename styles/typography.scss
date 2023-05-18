@@ -33,7 +33,7 @@ h1 {
 }
 
 p, h3, h4, h5, h6, .text, table, ol, ul {
-  font-size: calc(2.2rem / 1.6);
+  font-size: calc(2rem / 1.6);
   line-height: calc(3.1rem / 1.6);
   letter-spacing: -.5px;
 }
@@ -56,16 +56,20 @@ a {
     text-transform: uppercase;
   }
 
-  h2:first-child {
+  h2 {
     font-size: clamp(calc(3.2rem / 1.6), 3vw + calc(1rem / 1.6), calc(4.2rem / 1.6));
     font-family: Helvetica condensed bold,Helvetica Neue,Arial,Noto Sans,sans-serif;
     letter-spacing: -2px;
-    margin-bottom: calc(4rem / 1.6);
+    margin-bottom: calc(2rem / 1.6);
     text-transform: none;
+
+    &:not(:first-child) {
+      margin-top: calc(6rem / 1.6);
+    }
   }
 
-  h2 {
-    font-size: calc(2.4rem / 1.6);
+  h3 {
+    font-size: calc(2.2rem / 1.6);
     line-height: calc(3.2rem / 1.6);
     letter-spacing: -.5px;
   }

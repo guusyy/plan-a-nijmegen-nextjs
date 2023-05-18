@@ -263,7 +263,7 @@ export default function Membership({contentBlockContext}: {
       }, 500)
   }, [initiated])
 
-  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.subscriptions.data[0].attributes.title);
+  const [chosenMembership, setChosenMembership] = useState(contentBlockContext.subscriptions.data[0]?.attributes.title);
 
   const setGekozenMembership = (value: string) => {
     setChosenMembership(value);

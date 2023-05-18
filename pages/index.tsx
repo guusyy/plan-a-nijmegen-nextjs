@@ -254,7 +254,7 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
         <div className="mt-20 space-y-20 xl:mt-40 xl:space-y-40">
           {
             homepageData.contentBlocks.map((contentBlock, idx) => (
-              getContentBlockComponent(contentBlock, idx)
+              getContentBlockComponent(contentBlock, idx, homepageData.introText)
             ))
           }
         </div>

@@ -97,6 +97,7 @@ export const fragments = {
           }
           externalUrl:ExterneLink
         }
+        textBelow:Tekst_onder_knoppen
         gecentreerd:Gecentreerd
         mirrored:Gespiegeld
       }

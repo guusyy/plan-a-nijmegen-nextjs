@@ -25,6 +25,7 @@ export type textAndImage = {
     data: StrapiImage[]
   };
   buttons: button[];
+  textBelow?: string;
   gecentreerd: boolean | null;
   mirrored: boolean | null;
 }
