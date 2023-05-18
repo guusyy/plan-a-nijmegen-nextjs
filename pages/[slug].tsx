@@ -9,10 +9,8 @@ import getFooterColumns from "../queries/getFooterColumns";
 import getPage, { contentBlock } from "../queries/getPage";
 import getPages from "../queries/getPages";
 
-import { StrapiPage } from "../queries/getPage";
 import { InferGetStaticPropsType } from "next";
 import Welkomsactie from "../components/contentBlocks/welkomsactie";
-import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -45,6 +43,17 @@ export async function getStaticProps(context) {
       page
     }
  };
+}
+
+export const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
+  switch(contentBlock.blockType) {
+      case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={idx} />;
+      case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
+      case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
+      case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
+      case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
+      default:                                              return <h1 key={idx} >Geen contentblock template</h1>
+    }
 }
 
 export default function DetailPage({ 

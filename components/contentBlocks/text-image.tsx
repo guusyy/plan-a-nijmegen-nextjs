@@ -20,6 +20,16 @@ export const Container = styled.div<{ widthFull: boolean }>`
   grid-template-columns: ${(props) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
   gap: 2rem;
 
+  .my-80.space-y-80 & {
+    h2 {
+      font-size: clamp(4.5rem, 3vw + 1rem, 5.2rem);
+      font-family: Helvetica condensed bold,Helvetica Neue,Arial,Noto Sans,sans-serif;
+      letter-spacing: -2px;
+      margin-bottom: 3rem;
+      text-transform: none;
+    }
+  }
+
   @media (max-width: 64em) {
     grid-template-columns: minmax(10px, 1fr);
     grid-template-row: repeat(2, 1fr);
@@ -64,12 +74,9 @@ export const Container = styled.div<{ widthFull: boolean }>`
 
 const NavButtons = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin: 4rem 0 2rem 0;
-
-  @media (max-width: 64em) {
-    flex-direction: column;
-  }
 `
 
 export default function TextAndImage({contentBlockContext}: {
@@ -96,16 +103,18 @@ export default function TextAndImage({contentBlockContext}: {
             <NavButtons>
               {
                 contentBlockContext.buttons.map(button => (
-                  <Link href={button.linkedPage?.data?.attributes.slug ?? button.externalUrl} key={button.label}>
-                    <a className="btn">
-                      <span>
-                        {button.label}
-                      </span>
-                      <svg className="pa-icon" viewBox="0 0 20.868 29.5">
-                        <path d="M1.6,29.7.4,28.1,17.933,15,.4,1.8,1.6.2,21.267,15Z" transform="translate(-0.398 -0.201)"/>
-                      </svg>
-                    </a>
-                  </Link>
+                  ( button.linkedPage?.data?.attributes.slug ?? button.externalUrl ) && (
+                    <Link href={button.linkedPage?.data?.attributes.slug ?? button.externalUrl} key={button.label}>
+                      <a className="btn">
+                        <span>
+                          {button.label}
+                        </span>
+                        <svg className="pa-icon" viewBox="0 0 20.868 29.5">
+                          <path d="M1.6,29.7.4,28.1,17.933,15,.4,1.8,1.6.2,21.267,15Z" transform="translate(-0.398 -0.201)"/>
+                        </svg>
+                      </a>
+                    </Link>
+                  )
                 ))
               }
             </NavButtons>

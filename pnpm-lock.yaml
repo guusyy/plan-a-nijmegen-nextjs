@@ -11,7 +11,7 @@ specifiers:
   eslint-config-next: 12.3.1
   graphql: ^16.6.0
   next: 12.3.1
-  next-cloudinary: ^1.2.0
+  next-cloudinary: ^4.8.0
   postcss: ^8.4.16
   react: 18.2.0
   react-dom: 18.2.0
@@ -28,7 +28,7 @@ dependencies:
   animejs: 3.2.1
   graphql: 16.6.0
   next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
-  next-cloudinary: 1.2.0_next@12.3.1+react@18.2.0
+  next-cloudinary: 4.8.0_next@12.3.1+react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-markdown: 8.0.3_iapumuv4e6jcjznwuxpf4tt22e
@@ -219,6 +219,17 @@ packages:
       '@babel/helper-string-parser': 7.18.10
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@cloudinary-util/url-loader/3.2.0:
+    resolution: {integrity: sha512-jCgguukNTPLKGQZIVWRObXHySBde16wPvTs1S8J89/vtPhQsGxpE83jOVCll539ndm5qa5DrFfsgAsLd3g9CxQ==}
+    dependencies:
+      '@cloudinary-util/util': 2.0.1
+      '@cloudinary/url-gen': 1.8.7
+    dev: false
+
+  /@cloudinary-util/util/2.0.1:
+    resolution: {integrity: sha512-d2imgUjYTLjv8ZhZPMAts/uPbMvIE71X4I/5hwdY/7vM4BuFQoJMSyq+h2pW1z1MyGG9BOWBm70vp082lSrbEQ==}
     dev: false
 
   /@cloudinary/transformation-builder-sdk/1.1.0:
@@ -2283,12 +2294,14 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-cloudinary/1.2.0_next@12.3.1+react@18.2.0:
-    resolution: {integrity: sha512-qQ1OpEsZ6EJnzHyzzEOJj4Lj5sEleVtbJNAA4rFq9YwA8DtiL4SgQxH4fi0Ze0/ZaC4FTEwG2gcUKr8DjncJlg==}
+  /next-cloudinary/4.8.0_next@12.3.1+react@18.2.0:
+    resolution: {integrity: sha512-Jzn0xdIz3EfDTNp9Y7UqCAy/b0Z4T/W4zJMdMGjHXNMHS3nNflVbd9jx5An9ZwYrW94WDJ7FScqWdmUt6Olfiw==}
     peerDependencies:
       next: ^12 || ^13
       react: ^17 || ^18
     dependencies:
+      '@cloudinary-util/url-loader': 3.2.0
+      '@cloudinary-util/util': 2.0.1
       '@cloudinary/url-gen': 1.8.7
       next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
       react: 18.2.0

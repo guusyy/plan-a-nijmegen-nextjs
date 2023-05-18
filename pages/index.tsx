@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import anime from 'animejs'
 import { useEffect } from 'react';
 import { CldImage } from 'next-cloudinary';
+import { getContentBlockComponent } from './[slug]';
 
 const PAContainer = styled.div`
   display: flex;
@@ -25,13 +26,13 @@ const PAContainer = styled.div`
   }
 
   .intro-rte h1 {
-    font-size: clamp(3rem, 3vw + 1rem, 5.6rem);
-    font-size: clamp(3rem, 3vw + 1rem, 6rem);
+    font-size: clamp(3rem, 3vw + 1rem, 4.6rem);
+    font-size: clamp(3rem, 3vw + 1rem, 5rem);
     letter-spacing: -.2rem;
     color: var(--pa-maroon);
     font-weight: 400;
     max-width: 80%;
-    margin: 5rem 0;
+    margin: 4rem 0 0;
     line-height: 1.15;
     word-break: break-word;
 
@@ -49,12 +50,11 @@ const PAContainer = styled.div`
   .pa-quickbuttons-container {
     display: flex;
     gap: 2rem;
-    margin: 5rem 0;
+    margin: 6rem 0;
 
     @media (max-width: 64em) {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
-      margin: 2rem 0 5rem 0;
     }
 
     @media (max-width: 48em) {
@@ -68,7 +68,7 @@ const PAContainer = styled.div`
       background: var(--pa-white);
       border: 1px solid var(--pa-maroon);
       color: var(--pa-maroon);
-      min-height: 20rem;
+      min-height: 10rem;
       text-decoration: none;
       font-weight: 400;
       text-transform: uppercase;
@@ -97,7 +97,7 @@ const PAContainer = styled.div`
 
       & .pa-label {
         word-break: break-word;
-        font-size: clamp(1.6rem, 1.3vw + 1rem, 2.8rem);
+        font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
         letter-spacing: -.1rem;
         margin-top: .4rem;
 
@@ -111,15 +111,14 @@ const PAContainer = styled.div`
       & .pa-arrow {
         align-self: flex-end;
         font-size: 4rem;
-
         
         @media (max-width: 64em) {
           flex-wrap: wrap;  
         }
 
         & svg {
-          width: 2rem;
-          height: 2.9rem;
+          width: 1.5rem;
+          height: 2.3rem;
           fill: var(--pa-maroon);
         }
       }
@@ -137,12 +136,8 @@ const PAContainer = styled.div`
     }
   }
 
-  .hero-image  {
+  .hero-grid  {
     opacity: 0;
-    
-    img {
-      width: 100%;
-    }
   }
 `
 
@@ -167,7 +162,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ navItems, footerColumns, homepageData }: { navItems: NavItem[], footerColumns: FooterColumn[], homepageData: homePageData}) {
-  const randomImageIndex = Math.floor(Math.random() * homepageData.heroImages.data.length);
 
   useEffect(() => {
     var tl = anime.timeline({
@@ -183,18 +177,18 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
         duration: 1700,
       })
       .add({
-        targets: '.hero-image',
-        translateY: [-5, 0],
-        delay: 100,
-        opacity: [0, 1],
-        duration: 1700,
-      }, 300)
-      .add({
         targets: '.pa-quickbutton',
         translateY: [-5, 0],
         opacity: [0, 1],
         duration: 1700,
         delay: anime.stagger(200) // increase delay by 100ms for each elements.
+      }, 300)
+      .add({
+        targets: '.hero-grid',
+        translateY: [-5, 0],
+        delay: 100,
+        opacity: [0, 1],
+        duration: 1700,
       }, 700)
       .add({
         targets: '.pa-contact-info',
@@ -216,25 +210,6 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
           </div>
         </div>
 
-        {
-          homepageData.heroImages.data[0] && (
-            <div className="hero-image">
-              <CldImage
-                src={homepageData.heroImages.data[randomImageIndex].attributes.url}
-                width={homepageData.heroImages.data[randomImageIndex].attributes.width}
-                height={homepageData.heroImages.data[randomImageIndex].attributes.height}
-                alt="Sfeerbeeld van Plan A Nijmegen"
-                placeholder="blur"
-                blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
-                priority
-                sizes="
-                  100vw
-                "
-              />
-            </div>
-          )
-        }
-
         <div className="pa-quickbuttons-container">
           {
             homepageData.buttons?.map(button => (
@@ -251,7 +226,40 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
             ))
           }
         </div>
-        
+
+        {
+          homepageData.heroImages.data[0] && (
+            <div className="grid grid-cols-12 gap-10 hero-grid">
+              {
+                homepageData.heroImages.data.map((image, idx) => (
+                  <div key={idx} className={`relative ${idx === 0 && 'col-span-full'} ${idx === 2 && 'col-span-6'} ${idx !== 2 && idx !== 0 && 'col-span-3'} h-[min(50vh,500px)]`}>
+                    <CldImage
+                      src={image.attributes.url}
+                      layout="fill"
+                      objectFit='cover'
+                      alt="Sfeerbeeld van Plan A Nijmegen"
+                      placeholder="blur"
+                      blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                      priority
+                      sizes="
+                        100vw
+                      "
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          )
+        }
+
+        <div className="my-80 space-y-80">
+          {
+            homepageData.contentBlocks.map((contentBlock, idx) => (
+              getContentBlockComponent(contentBlock, idx)
+            ))
+          }
+        </div>
+
         {/* <div className="pa-contact-info">
           <div className="intro-contact">
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
