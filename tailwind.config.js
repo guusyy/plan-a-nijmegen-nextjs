@@ -5,6 +5,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      heading: ['Helvetica condensed bold']
+    },
     extend: {
       colors: {
         'pa-red': '#f0250a',

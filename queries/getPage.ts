@@ -15,7 +15,7 @@ export type StrapiImage = {
   }
 }
 
-export type contentBlock = textAndImage | community | membershipCB | ruimteCB | welkomsActieCB | textTwoCols;
+export type contentBlock = textAndImage | community | membershipCB | ruimteCB | welkomsActieCB | textTwoCols | events;
 
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
@@ -34,6 +34,11 @@ export type textTwoCols = {
   blockType: "ComponentContentblockTekstTweeKolommen";
   text1?: string;
   text2?: string;
+}
+
+export type events = {
+  blockType: "ComponentContentblockAgendaOverzicht";
+  intro?: string;
 }
 
 export type community = {

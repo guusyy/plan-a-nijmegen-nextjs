@@ -105,6 +105,24 @@ export const fragments = {
         text1:Tekst_links
         text2:Tekst_rechts
       }
+      ... on ComponentContentblockAgendaOverzicht {
+        intro: Koptekst
+      }
+    }
+  `,
+
+  events: `
+    evenementens(sort: "Begintijd:asc", pagination: { limit: 200 }) {
+      data {
+        id
+        attributes {
+          Titel
+          Type
+          Beschrijving
+          Begintijd
+          Eindtijd
+        }
+      }
     }
   `,
 };

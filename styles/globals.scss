@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
 
 @keyframes opacity-animate {
 	from {
@@ -139,3 +139,5 @@ img {
 .img-lazy[lazy=loaded] {
   opacity: 1;
 }
+
+@tailwind utilities;
