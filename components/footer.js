@@ -5,34 +5,34 @@ import styled from "styled-components"
 
 const PAFooter = styled.footer`
   border-top: 1px solid var(--pa-maroon);
-  padding: 2rem 0;
-  line-height: 2rem;
-  font-size: 1.4rem;
+  padding: calc(2rem / 1.6) 0;
+  line-height: calc(2rem / 1.6);
+  font-size: calc(1.4rem / 1.6);
 
   display: grid;
   grid-template-columns: repeat(5, minmax(0,1fr));
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: calc(2rem / 1.6);
 
   @media (max-width: 80em) {
     grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-    margin-top: 8rem;
+    margin-top: calc(8rem / 1.6);
   }
 
   @media (max-width: 64em) {
     grid-template-columns: minmax(0,1fr);
-    margin-top: 8rem;
+    margin-top: calc(8rem / 1.6);
   }
 
   & * {
-    line-height: 2rem;
-    font-size: 1.4rem;
+    line-height: calc(2rem / 1.6);
+    font-size: calc(1.4rem / 1.6);
   }
 
   table {
     width: 100%;
-    max-width: 25rem;
+    max-width: calc(25rem / 1.6);
   }
 
   h2, h3, h4 {

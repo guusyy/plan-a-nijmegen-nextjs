@@ -26,13 +26,13 @@ const PAContainer = styled.div`
   }
 
   .intro-rte h1 {
-    font-size: clamp(3rem, 3vw + 1rem, 4.6rem);
-    font-size: clamp(3rem, 3vw + 1rem, 5rem);
-    letter-spacing: -.2rem;
+    font-size: clamp(calc(3rem / 1.6), 3vw + calc(1rem / 1.6), calc(4.6rem / 1.6));
+    font-size: clamp(calc(3rem / 1.6), 3vw + calc(1rem / 1.6), calc(5rem / 1.6));
+    letter-spacing: -calc(.2rem / 1.6);
     color: var(--pa-maroon);
     font-weight: 400;
     max-width: 80%;
-    margin: 4rem 0 0;
+    margin: calc(4rem / 1.6) 0 0;
     line-height: 1.15;
     word-break: break-word;
 
@@ -43,14 +43,14 @@ const PAContainer = styled.div`
 
     @media (max-width: 64em) {
       max-width: 90%;
-      margin: 2rem 0;
+      margin: calc(2rem / 1.6) 0;
     }
   }
 
   .pa-quickbuttons-container {
     display: flex;
-    gap: 2rem;
-    margin: 6rem 0;
+    gap: calc(2rem / 1.6);
+    margin: calc(6rem / 1.6) 0;
 
     @media (max-width: 64em) {
       display: grid;
@@ -68,19 +68,19 @@ const PAContainer = styled.div`
       background: var(--pa-white);
       border: 1px solid var(--pa-maroon);
       color: var(--pa-maroon);
-      min-height: 10rem;
+      min-height: calc(10rem / 1.6);
       text-decoration: none;
       font-weight: 400;
       text-transform: uppercase;
       display: flex;
       justify-content: space-between;
-      padding: 1.5rem 2rem;
+      padding: calc(1.5rem / 1.6) calc(2rem / 1.6);
       flex-direction: column;
 
       transition: all .1s ease;
 
       @media (max-width: 48em) {
-        min-height: 6.4rem;
+        min-height: calc(6.4rem / 1.6);
         flex-direction: row;
         align-items: center;
       }
@@ -97,12 +97,12 @@ const PAContainer = styled.div`
 
       & .pa-label {
         word-break: break-word;
-        font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
-        letter-spacing: -.1rem;
-        margin-top: .4rem;
+        font-size: clamp(calc(1.6rem / 1.6), 1.2vw + calc(1rem / 1.6), calc(2.2rem / 1.6));
+        letter-spacing: -calc(.1rem / 1.6);
+        margin-top: calc(.4rem / 1.6);
 
         @media (max-width: 64em) {
-          font-size: 2.4rem;
+          font-size: calc(2.4rem / 1.6);
         }
 
         font-weight: 400;
@@ -110,15 +110,15 @@ const PAContainer = styled.div`
 
       & .pa-arrow {
         align-self: flex-end;
-        font-size: 4rem;
+        font-size: calc(4rem / 1.6);
         
         @media (max-width: 64em) {
           flex-wrap: wrap;  
         }
 
         & svg {
-          width: 1.5rem;
-          height: 2.3rem;
+          width: calc(1.5rem / 1.6);
+          height: calc(2.3rem / 1.6);
           fill: var(--pa-maroon);
         }
       }
@@ -129,10 +129,10 @@ const PAContainer = styled.div`
     text-decoration: none;
     color: var(--pa-maroon);
     font-weight: 400;
-    font-size: clamp(2.8rem, 3vw + 1rem, 3.2rem);
+    font-size: clamp(calc(2.8rem / 1.6), 3vw + calc(1rem / 1.6), calc(3.2rem / 1.6));
 
     @media (max-width: 64em) {
-      font-size: 2.4rem;
+      font-size: calc(2.4rem / 1.6);
     }
   }
 

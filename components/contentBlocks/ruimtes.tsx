@@ -20,7 +20,7 @@ const WorkspaceRow = styled.div`
   display: grid;
   max-width: 100%;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4rem;
+  gap: calc(4rem / 1.6);
 
   @media (max-width: 64em) {
     grid-template-columns: minmax(10px, 1fr);
@@ -28,49 +28,49 @@ const WorkspaceRow = styled.div`
   }
 
   & .workspace-item {
-    padding: 1rem 0rem;
+    padding: calc(1rem / 1.6) calc(0rem / 1.6);
     opacity: 0;
 
     & h2 {
-      margin: 4rem 0 1rem 0;
-      font-size: 3rem;
+      margin: calc(4rem / 1.6) 0 calc(1rem / 1.6) 0;
+      font-size: calc(3rem / 1.6);
     }
 
     & .workspace-description {
-      margin: 2rem 0;
+      margin: calc(2rem / 1.6) 0;
     }
   }
 
   & .price {
-    margin: 1rem 0;
-    font-size: 2.2rem;
+    margin: calc(1rem / 1.6) 0;
+    font-size: calc(2.2rem / 1.6);
 
     & .price-label {
-      font-size: 1.4rem;
+      font-size: calc(1.4rem / 1.6);
     }
   }
 
   & .features {
     list-style-type: "-";
-    margin: 2rem 0 2rem 1rem;
+    margin: calc(2rem / 1.6) 0 calc(2rem / 1.6) calc(1rem / 1.6);
 
     & li {
-      padding-left: 1rem;
-      margin: .5rem 0;
-      font-size: 2.2rem;
+      padding-left: calc(1rem / 1.6);
+      margin: calc(.5rem / 1.6) 0;
+      font-size: calc(2.2rem / 1.6);
     }
   }
 
   & button {
     border: 1px solid var(--pa-maroon);
     background: var(--pa-white);
-    font-size: 2rem;
+    font-size: calc(2rem / 1.6);
     text-transform: uppercase;
-    padding: 1rem;
+    padding: calc(1rem / 1.6);
     color: var(--pa-maroon);
     cursor: pointer;
     transition: all .1s ease;
-    margin: 2rem 0;
+    margin: calc(2rem / 1.6) 0;
 
     &:focus {
       outline: 0;

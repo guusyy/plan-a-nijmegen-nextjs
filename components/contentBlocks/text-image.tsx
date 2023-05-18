@@ -17,15 +17,15 @@ import { CldImage } from 'next-cloudinary';
 export const Container = styled.div<{ widthFull: boolean }>`
   display: grid;
   max-width: 100%;
-  grid-template-columns: ${(props) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - 1rem) calc(60% - 1rem)"};
-  gap: 2rem;
+  grid-template-columns: ${(props) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - calc(1rem / 1.6)) calc(60% - calc(1rem / 1.6))"};
+  gap: calc(2rem / 1.6);
 
   .my-80.space-y-80 & {
     h2 {
-      font-size: clamp(4.5rem, 3vw + 1rem, 5.2rem);
+      font-size: clamp(calc(4.5rem / 1.6), 3vw + calc(1rem / 1.6), calc(5.2rem / 1.6));
       font-family: Helvetica condensed bold,Helvetica Neue,Arial,Noto Sans,sans-serif;
       letter-spacing: -2px;
-      margin-bottom: 3rem;
+      margin-bottom: calc(3rem / 1.6);
       text-transform: none;
     }
   }
@@ -57,17 +57,17 @@ export const Container = styled.div<{ widthFull: boolean }>`
   }
 
   .pa-contact-businesshours {
-    margin-top: 5rem;
+    margin-top: calc(5rem / 1.6);
     display: flex;
-    gap: 15rem;
+    gap: calc(15rem / 1.6);
     
     & .pa-contact-workroom p {
-      line-height: 3rem;
+      line-height: calc(3rem / 1.6);
     }
 
     @media (max-width: 64em) {
       flex-direction: column;
-      gap: 2rem;
+      gap: calc(2rem / 1.6);
     }
   }
 `
@@ -75,8 +75,8 @@ export const Container = styled.div<{ widthFull: boolean }>`
 const NavButtons = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin: 4rem 0 2rem 0;
+  gap: calc(1rem / 1.6);
+  margin: calc(4rem / 1.6) 0 calc(2rem / 1.6) 0;
 `
 
 export default function TextAndImage({contentBlockContext}: {

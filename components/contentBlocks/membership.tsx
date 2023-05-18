@@ -9,15 +9,15 @@ import { Container } from "./text-image"
 import { useRouter } from "next/router"
 
 export const IntroRow = styled.div`
-  margin-bottom: 1rem;
-  max-width: 120rem;
+  margin-bottom: calc(1rem / 1.6);
+  max-width: calc(120rem / 1.6);
 `
 
 const MembershipRow = styled.div`
   display: grid;
   max-width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4rem;
+  gap: calc(4rem / 1.6);
 
   @media (max-width: 64em) {
     grid-template-columns: minmax(10px, 1fr);
@@ -27,11 +27,11 @@ const MembershipRow = styled.div`
   & .membership-item {
 
     border-top: 1px solid var(--pa-maroon);
-    padding: 1rem 0rem;
+    padding: calc(1rem / 1.6) calc(0rem / 1.6);
     opacity: 0;
 
     & h3 {
-      font-size: 3rem;
+      font-size: calc(3rem / 1.6);
     }
 
     ul {
@@ -40,27 +40,27 @@ const MembershipRow = styled.div`
   }
 
   & .price {
-    margin: 1rem 0;
-    font-size: 2.2rem;
+    margin: calc(1rem / 1.6) 0;
+    font-size: calc(2.2rem / 1.6);
 
     & .price-label {
-      font-size: 1.4rem;
+      font-size: calc(1.4rem / 1.6);
     }
   }
 
   & .features {
-    margin: 2rem 0;
+    margin: calc(2rem / 1.6) 0;
     list-style-type: none;
 
     & li {
-      padding-left: 2rem;
-      margin: .5rem 0;
-      font-size: 2.2rem;
+      padding-left: calc(2rem / 1.6);
+      margin: calc(.5rem / 1.6) 0;
+      font-size: calc(2.2rem / 1.6);
       
       &:before {
         content: "–";
         position: absolute;
-        margin-left: -2rem;
+        margin-left: -calc(2rem / 1.6);
       }
     }
   }
@@ -68,13 +68,13 @@ const MembershipRow = styled.div`
   & button {
     border: 1px solid var(--pa-maroon);
     background: var(--pa-white);
-    font-size: 2rem;
+    font-size: calc(2rem / 1.6);
     text-transform: uppercase;
-    padding: 1rem;
+    padding: calc(1rem / 1.6);
     color: var(--pa-maroon);
     cursor: pointer;
     transition: all .1s ease;
-    margin: 2rem 0;
+    margin: calc(2rem / 1.6) 0;
 
     &:focus {
       outline: 0;
@@ -91,8 +91,8 @@ export const ContactRow = styled.div`
   display: grid;
   max-width: 100%;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4rem;
-  margin-bottom: 10rem;
+  gap: calc(4rem / 1.6);
+  margin-bottom: calc(10rem / 1.6);
   opacity: 0;
 
   @media (max-width: 64em) {
@@ -104,12 +104,12 @@ export const ContactRow = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    margin: 4rem 0;
+    gap: calc(.5rem / 1.6);
+    margin: calc(4rem / 1.6) 0;
 
     .fullname {
       display: flex;
-      gap: 1rem;
+      gap: calc(1rem / 1.6);
 
       :first-child {
         width: 60%;
@@ -134,32 +134,32 @@ export const ContactRow = styled.div`
 
     .select-arrow-down {
       position: absolute;
-      right: 1rem;
+      right: calc(1rem / 1.6);
       top: 50%;
       transform: translate(0, -50%);
-      width: 1.6rem;
+      width: calc(1.6rem / 1.6);
       pointer-events: none;
     }
 
     label {
       font-size: 18px;
-      padding: 0.5rem 1rem 0;
+      padding: calc(0.5rem / 1.6) calc(1rem / 1.6) 0;
       line-height: 1;
       display: block;
     }
 
     & select, input, textarea {
-      font-size: 2rem;
+      font-size: calc(2rem / 1.6);
       width: 100%;
-      height: 5rem;      
+      height: calc(5rem / 1.6);      
       border: none;
       border-bottom: 1px solid var(--pa-maroon);
       background: var(--pa-white);
       color: var(--pa-maroon);
-      padding: .5rem 1rem;
+      padding: calc(.5rem / 1.6) calc(1rem / 1.6);
 
       @media (max-width: 64em) {
-        height: 6rem;
+        height: calc(6rem / 1.6);
       }
 
       &:focus {
@@ -174,7 +174,7 @@ export const ContactRow = styled.div`
     }
 
     textarea {
-      height: 10rem;
+      height: calc(10rem / 1.6);
       resize: none;
     }
 
@@ -185,15 +185,15 @@ export const ContactRow = styled.div`
     button {
       border: 1px solid var(--pa-maroon);
       background: var(--pa-white);
-      font-size: 2rem;
+      font-size: calc(2rem / 1.6);
       text-transform: uppercase;
-      padding: 1rem;
+      padding: calc(1rem / 1.6);
       color: var(--pa-maroon);
       cursor: pointer;
       transition: all .1s ease;
-      margin: 2rem 0;
+      margin: calc(2rem / 1.6) 0;
       display: flex;
-      gap: 2rem;
+      gap: calc(2rem / 1.6);
       margin-left: auto;
 
       &:focus {
@@ -209,7 +209,7 @@ export const ContactRow = styled.div`
 
   .address-inputs {
     display: flex;
-    gap: 1rem;
+    gap: calc(1rem / 1.6);
 
     @media (max-width: 48em) {
       flex-direction: column;
@@ -219,7 +219,7 @@ export const ContactRow = styled.div`
   .succes-message {
 
     width: 100%;
-    min-height: 20rem;
+    min-height: calc(20rem / 1.6);
     align-items: center;
     text-decoration: underline;
     display: flex;
