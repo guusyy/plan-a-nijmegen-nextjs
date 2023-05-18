@@ -26,14 +26,13 @@ const PAContainer = styled.div`
   }
 
   .intro-rte h1 {
-    font-size: clamp(calc(3rem / 1.6), 3vw + calc(1rem / 1.6), calc(4.6rem / 1.6));
     font-size: clamp(calc(3rem / 1.6), 3vw + calc(1rem / 1.6), calc(5rem / 1.6));
-    letter-spacing: -calc(.2rem / 1.6);
+    letter-spacing: -2px;
     color: var(--pa-maroon);
-    font-weight: 400;
-    max-width: 80%;
+    font-weight: 300;
+    max-width: min(1040px, 80%);
     margin: calc(4rem / 1.6) 0 0;
-    line-height: 1.15;
+    line-height: 1.2;
     word-break: break-word;
 
     & a {
@@ -97,8 +96,8 @@ const PAContainer = styled.div`
 
       & .pa-label {
         word-break: break-word;
-        font-size: clamp(calc(1.6rem / 1.6), 1.2vw + calc(1rem / 1.6), calc(2.2rem / 1.6));
-        letter-spacing: -calc(.1rem / 1.6);
+        font-size: clamp(calc(1.6rem / 1.6), 1.2vw + calc(1rem / 1.6), calc(2.4rem / 1.6));
+        letter-spacing: -1px;
         margin-top: calc(.4rem / 1.6);
 
         @media (max-width: 64em) {
@@ -229,10 +228,10 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
 
         {
           homepageData.heroImages.data[0] && (
-            <div className="grid grid-cols-12 gap-10 hero-grid">
+            <div className="grid grid-cols-12 gap-7 hero-grid">
               {
                 homepageData.heroImages.data.map((image, idx) => (
-                  <div key={idx} className={`relative ${idx === 0 && 'col-span-full'} ${idx === 2 && 'col-span-6'} ${idx !== 2 && idx !== 0 && 'col-span-3'} h-[min(50vh,500px)]`}>
+                  <div key={idx} className={`relative last:max-md:hidden ${idx === 0 && 'col-span-full h-[min(50vh,500px)]'} ${idx === 2 && 'col-span-6 md:col-span-6 h-64'} ${idx !== 2 && idx !== 0 && 'col-span-6 md:col-span-3 h-64'} lg:h-[min(50vh,500px)]`}>
                     <CldImage
                       src={image.attributes.url}
                       layout="fill"
@@ -252,21 +251,13 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
           )
         }
 
-        <div className="my-80 space-y-80">
+        <div className="mt-20 space-y-20 xl:mt-40 xl:space-y-40">
           {
             homepageData.contentBlocks.map((contentBlock, idx) => (
               getContentBlockComponent(contentBlock, idx)
             ))
           }
         </div>
-
-        {/* <div className="pa-contact-info">
-          <div className="intro-contact">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {homepageData.contactDetails}
-            </ReactMarkdown>
-          </div>
-        </div> */}
       </PAContainer>
     </MainLayout >
   )

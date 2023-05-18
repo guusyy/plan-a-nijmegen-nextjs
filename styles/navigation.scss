@@ -136,7 +136,7 @@
         text-decoration: none;
         text-transform: uppercase;
         font-size: clamp(calc(1.6rem / 1.6), 1vw + calc(1rem / 1.6), calc(2.4rem / 1.6));
-        letter-spacing: -calc(.1rem / 1.6);
+        letter-spacing: -1px;
 
         &:hover {
           text-decoration: underline;

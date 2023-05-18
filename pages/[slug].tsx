@@ -11,6 +11,7 @@ import getPages from "../queries/getPages";
 
 import { InferGetStaticPropsType } from "next";
 import Welkomsactie from "../components/contentBlocks/welkomsactie";
+import TextTwoCols from "../components/contentBlocks/textTwoCols";
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -52,6 +53,7 @@ export const getContentBlockComponent = (contentBlock: contentBlock, idx: number
       case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
       case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
       case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
+      case "ComponentContentblockTekstTweeKolommen": return <TextTwoCols contentBlockContext={contentBlock} key={idx}  />;
       default:                                              return <h1 key={idx} >Geen contentblock template</h1>
     }
 }
@@ -61,17 +63,6 @@ export default function DetailPage({
   footerColumns, 
   page 
 }: InferGetStaticPropsType<typeof getStaticProps> ) {
-
-  const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
-    switch(contentBlock.blockType) {
-        case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
-        case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
-        default:                                              return <h1 key={idx} >Geen contentblock template</h1>
-      }
-  }
 
   const getOgImage = (contentBlock: contentBlock, idx?: number) => {
     switch(contentBlock.blockType) {

@@ -14,27 +14,7 @@ import anime from 'animejs'
 import { textAndImage } from "../../queries/getPage"
 import { CldImage } from 'next-cloudinary';
 
-export const Container = styled.div<{ widthFull: boolean }>`
-  display: grid;
-  max-width: 100%;
-  grid-template-columns: ${(props) => props.widthFull ? "minmax(0, 1fr)" : "calc(40% - calc(1rem / 1.6)) calc(60% - calc(1rem / 1.6))"};
-  gap: calc(2rem / 1.6);
-
-  .my-80.space-y-80 & {
-    h2 {
-      font-size: clamp(calc(4.5rem / 1.6), 3vw + calc(1rem / 1.6), calc(5.2rem / 1.6));
-      font-family: Helvetica condensed bold,Helvetica Neue,Arial,Noto Sans,sans-serif;
-      letter-spacing: -2px;
-      margin-bottom: calc(3rem / 1.6);
-      text-transform: none;
-    }
-  }
-
-  @media (max-width: 64em) {
-    grid-template-columns: minmax(10px, 1fr);
-    grid-template-row: repeat(2, 1fr);
-  }
-
+export const Container = styled.div`
   .swiper-holder {
     display: flex;
     justify-content: flex-end;
@@ -44,14 +24,10 @@ export const Container = styled.div<{ widthFull: boolean }>`
     }
 
     .image-holder {
-      width: 90%;
+      width: 100%;
 
       & img {
         min-width: 100%;
-      }
-
-      @media (max-width: 64em) {
-        width: 100%;
       }
     }
   }
@@ -79,22 +55,22 @@ const NavButtons = styled.div`
   margin: calc(4rem / 1.6) 0 calc(2rem / 1.6) 0;
 `
 
-export default function TextAndImage({contentBlockContext}: {
+export default function TextAndImage({ contentBlockContext }: {
   contentBlockContext: textAndImage
 }) {
   const [initiated, setInitiated] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
-  
+
   useEffect(() => {
     setInitialSlide(0);
 
-    if(initiated) return
+    if (initiated) return
     setInitiated(true);
   }, [initiated])
 
   return (
-    <Container widthFull={contentBlockContext.noImageFullWidth}>
-      <div className="column rte">
+    <Container className={`flex flex-col grid-cols-12 gap-10 xl:grid ${contentBlockContext.gecentreerd ? 'items-center' : ''}`}>
+      <div className={`column w-full xl:max-w-2xl rte ${contentBlockContext.mirrored ? 'xl:order-last col-span-7 xl:ml-20' : 'col-span-5'}`}>
         <ReactMarkdown rehypePlugins={[rehypeRaw]}>
           {contentBlockContext.mdText}
         </ReactMarkdown>
@@ -103,14 +79,14 @@ export default function TextAndImage({contentBlockContext}: {
             <NavButtons>
               {
                 contentBlockContext.buttons.map(button => (
-                  ( button.linkedPage?.data?.attributes.slug ?? button.externalUrl ) && (
+                  (button.linkedPage?.data?.attributes.slug ?? button.externalUrl) && (
                     <Link href={button.linkedPage?.data?.attributes.slug ?? button.externalUrl} key={button.label}>
                       <a className="btn">
                         <span>
                           {button.label}
                         </span>
                         <svg className="pa-icon" viewBox="0 0 20.868 29.5">
-                          <path d="M1.6,29.7.4,28.1,17.933,15,.4,1.8,1.6.2,21.267,15Z" transform="translate(-0.398 -0.201)"/>
+                          <path d="M1.6,29.7.4,28.1,17.933,15,.4,1.8,1.6.2,21.267,15Z" transform="translate(-0.398 -0.201)" />
                         </svg>
                       </a>
                     </Link>
@@ -124,7 +100,7 @@ export default function TextAndImage({contentBlockContext}: {
 
       {
         contentBlockContext.images.data.length > 0 && initiated && (
-          <div className="column swiper-holder">
+          <div className={`max-xl:w-full swiper-holder ${contentBlockContext.mirrored ? 'col-span-5' : 'col-span-7 xl:ml-20'}`}>
             <div className="image-holder">
               {
                 contentBlockContext.images.data.length < 2 ? (
@@ -142,39 +118,39 @@ export default function TextAndImage({contentBlockContext}: {
                     "
                   />
                 ) :
-                (
-                  <Swiper
-                    modules={[Navigation, EffectFade, Lazy]}
-                    slidesPerView={1}
-                    speed={400}
-                    effect={"fade"}
-                    navigation={true}
-                    lazy={true}
-                    initialSlide={initialSlide}
-                  >
-                    {
-                      contentBlockContext.images.data.map((image, idx) => (
-                        <SwiperSlide key={idx} >
-                          <div className="relative">
-                            <CldImage
-                              src={image.attributes.url}
-                              width={image.attributes.width}
-                              height={image.attributes.height}
-                              alt="Sfeerbeeld van Plan A Nijmegen"
-                              placeholder="blur"
-                              blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
-                              priority={idx === 0}
-                              sizes="
+                  (
+                    <Swiper
+                      modules={[Navigation, EffectFade, Lazy]}
+                      slidesPerView={1}
+                      speed={400}
+                      effect={"fade"}
+                      navigation={true}
+                      lazy={true}
+                      initialSlide={initialSlide}
+                    >
+                      {
+                        contentBlockContext.images.data.map((image, idx) => (
+                          <SwiperSlide key={idx} >
+                            <div className="relative">
+                              <CldImage
+                                src={image.attributes.url}
+                                width={image.attributes.width}
+                                height={image.attributes.height}
+                                alt="Sfeerbeeld van Plan A Nijmegen"
+                                placeholder="blur"
+                                blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMk+P/DwADGQGUKyfeGAAAAABJRU5ErkJggg=='}
+                                priority={idx === 0}
+                                sizes="
                                 (max-width: 768px) 100vw,
                                 50vw
                               "
-                            />
-                          </div>
-                        </SwiperSlide>
-                      ))
-                    }
-                  </Swiper>
-                )
+                              />
+                            </div>
+                          </SwiperSlide>
+                        ))
+                      }
+                    </Swiper>
+                  )
               }
             </div>
           </div>

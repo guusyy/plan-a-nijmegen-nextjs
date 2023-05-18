@@ -98,44 +98,6 @@ table {
   max-width: 100%;
 }
 
-.btn {
-  border: 1px solid var(--pa-maroon);
-  background: var(--pa-white);
-  font-size: calc(2rem / 1.6);
-  text-transform: uppercase;
-  padding: calc(2rem / 1.6) calc(2rem / 1.6) calc(2rem / 1.6) calc(1rem / 1.6);
-  color: var(--pa-maroon);
-  cursor: pointer;
-  transition: all 0.1s ease;
-
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  & svg {
-    fill: var(--pa-maroon);
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  &:hover {
-    background: var(--pa-maroon);
-    color: var(--pa-white);
-    text-decoration: none;
-
-    & svg {
-      fill: var(--pa-white);
-    }
-  }
-}
-
-.pa-icon {
-  width: calc(2rem / 1.6);
-}
-
 select {
   -webkit-appearance:none;
 }
