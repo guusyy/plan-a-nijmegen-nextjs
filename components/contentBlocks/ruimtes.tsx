@@ -158,7 +158,7 @@ export default function Membership({contentBlockContext}: {
   }
 
   return (
-    <Container widthFull={true}>
+    <Container>
       <IntroRow>
         <div className="column" >
           <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">

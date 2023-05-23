@@ -57,7 +57,7 @@ export default function Welkomsactie({contentBlockContext}: {
   }
 
   return (
-    <Container widthFull={true}>
+    <Container>
       <IntroRow>
         <div className="column" >
           <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">

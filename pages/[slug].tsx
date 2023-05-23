@@ -87,7 +87,7 @@ export default function DetailPage({
 
   return (
     <MainLayout navItems={navItems} footerColumns={footerColumns} title={page.title}>
-      <div className="space-y-20">
+      <div className="space-y-20 xl:space-y-32">
         {
           page.contentBlocks.map((contentBlock, idx) => (
             getContentBlockComponent(contentBlock, idx, page.title, events)

@@ -32,7 +32,7 @@ export default function Footer({ footerColumns }) {
           switch (col.componentType) {
             case 'ComponentFooterLinks':
               return (
-                <div key={i}>
+                <div key={i} className="col-span-full">
                   <ul className={`flex gap-x-10 gap-y-5 flex-wrap text-lg`}>
                     {
                       col.links?.map(link => (

@@ -91,4 +91,11 @@ a {
     position: absolute;
     margin-left: calc(-2rem / 1.6);
   }
+
+  &--sm {
+    p, h3, h4, h5, h6, .text, table, ol, ul {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
 }

@@ -34,8 +34,6 @@ export const fragments = {
       }
       ... on ComponentContentblockMembershipSelectie {
         introTextMd:IntroTekst
-        formTextMd:FormulierIntroTekst
-        formSubmitTextMd:FormulierVerzondenBericht
         subscriptions:abonnementen (pagination: {limit: 100}) {
           data {
             attributes {
@@ -46,6 +44,7 @@ export const fragments = {
             }
           }
         }
+        disclaimer:Disclaimer
       }
       ... on ComponentContentblockCommunity {
         mdText:Tekst
@@ -84,6 +83,9 @@ export const fragments = {
               provider_metadata
             }
           }
+        }
+        usps: Usp {
+          usp:Usp
         }
         buttons:Knoppen {
           label:Label

@@ -70,10 +70,25 @@ export default function TextAndImage({ contentBlockContext }: {
 
   return (
     <Container className={`flex flex-col grid-cols-12 gap-10 xl:grid ${contentBlockContext.gecentreerd ? 'items-center' : ''}`}>
-      <div className={`column w-full xl:max-w-2xl rte ${contentBlockContext.mirrored ? 'xl:order-last col-span-7 xl:ml-20' : 'col-span-5'}`}>
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+      <div className={`column w-full xl:max-w-2xl ${contentBlockContext.mirrored ? 'xl:order-last col-span-7 xl:ml-20' : 'col-span-5'}`}>
+        <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
           {contentBlockContext.mdText}
         </ReactMarkdown>
+        {
+          contentBlockContext.usps.length > 0 && (
+            <ul className="my-5">
+              {
+                contentBlockContext.usps.map((usp, idx) => (
+                  <li key={idx} className={`flex items-center gap-5 mt-3`}>
+                    <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="22.319" height="20.424" viewBox="0 0 22.319 20.424"><path d="M-9409.106,1612.738a1.5,1.5,0,0,1-1.076-.455l-7.786-8.018,2.152-2.09,6.5,6.694,11.181-16.554,2.486,1.679-12.214,18.084a1.5,1.5,0,0,1-1.11.655C-9409.019,1612.736-9409.062,1612.738-9409.106,1612.738Z" transform="translate(9417.969 -1592.315)" fill="#691e0f"/></svg>
+                    <p className="max-w-xl">{usp.usp}</p>
+                  </li>
+                ))
+              }
+            </ul>  
+          )
+        }
+
         {
           contentBlockContext.buttons.length > 0 && (
             <NavButtons>
@@ -96,7 +111,7 @@ export default function TextAndImage({ contentBlockContext }: {
             </NavButtons>
           )
         }
-        <ReactMarkdown className={`mt-14`} rehypePlugins={[rehypeRaw]}>
+        <ReactMarkdown className={`mt-14 rte`} rehypePlugins={[rehypeRaw]}>
           {contentBlockContext.textBelow}
         </ReactMarkdown>
       </div>

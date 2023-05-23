@@ -24,6 +24,9 @@ export type textAndImage = {
   images: {
     data: StrapiImage[]
   };
+  usps?: {
+    usp: string
+  }[];
   buttons: button[];
   textBelow?: string;
   gecentreerd: boolean | null;
@@ -73,11 +76,10 @@ export type membership = {
 export type membershipCB = {
   blockType: "ComponentContentblockMembershipSelectie";
   introTextMd: string
-  formTextMd: string
-  formSubmitTextMd: string
   subscriptions: {
     data: membership[]
   }
+  disclaimer: string
 }
 
 export type space = {
