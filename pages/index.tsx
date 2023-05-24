@@ -12,134 +12,6 @@ import { useEffect } from 'react';
 import { CldImage } from 'next-cloudinary';
 import { getContentBlockComponent } from './[slug]';
 
-const PAContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media (min-width: 64em ) {
-    min-height: 80vh;
-  }
-
-  .intro-text, .pa-quickbutton, .pa-contact-info {
-    opacity: 0;
-  }
-
-  .intro-rte h1 {
-    font-size: clamp(calc(3rem / 1.6), 3vw + calc(1rem / 1.6), calc(5rem / 1.6));
-    letter-spacing: -2px;
-    color: var(--pa-maroon);
-    font-weight: 300;
-    max-width: min(1040px, 80%);
-    margin: calc(4rem / 1.6) 0 0;
-    line-height: 1.2;
-    word-break: break-word;
-
-    & a {
-      color: var(--pa-maroon);
-      text-decoration: underline;
-    }
-
-    @media (max-width: 64em) {
-      max-width: 90%;
-      margin: calc(2rem / 1.6) 0;
-    }
-  }
-
-  .pa-quickbuttons-container {
-    display: flex;
-    gap: calc(2rem / 1.6);
-    margin: calc(6rem / 1.6) 0;
-
-    @media (max-width: 64em) {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-
-    @media (max-width: 48em) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    
-    & .pa-quickbutton {
-      width: 100%;
-      background: var(--pa-white);
-      border: 1px solid var(--pa-maroon);
-      color: var(--pa-maroon);
-      min-height: calc(10rem / 1.6);
-      text-decoration: none;
-      font-weight: 400;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      padding: calc(1.5rem / 1.6) calc(2rem / 1.6);
-      flex-direction: column;
-
-      transition: all .1s ease;
-
-      @media (max-width: 48em) {
-        min-height: calc(6.4rem / 1.6);
-        flex-direction: row;
-        align-items: center;
-      }
-      
-
-      &:hover {
-        background: var(--pa-maroon);
-        color: var(--pa-white);
-
-        & .pa-arrow svg {
-          fill: var(--pa-white);
-        }
-      }
-
-      & .pa-label {
-        word-break: break-word;
-        font-size: clamp(calc(1.6rem / 1.6), 1.2vw + calc(1rem / 1.6), calc(2.4rem / 1.6));
-        letter-spacing: -1px;
-        margin-top: calc(.4rem / 1.6);
-
-        @media (max-width: 64em) {
-          font-size: calc(2.4rem / 1.6);
-        }
-
-        font-weight: 400;
-      }
-
-      & .pa-arrow {
-        align-self: flex-end;
-        font-size: calc(4rem / 1.6);
-        
-        @media (max-width: 64em) {
-          flex-wrap: wrap;  
-        }
-
-        & svg {
-          width: calc(1.5rem / 1.6);
-          height: calc(2.3rem / 1.6);
-          fill: var(--pa-maroon);
-        }
-      }
-    }
-  }
-
-  .intro-contact {
-    text-decoration: none;
-    color: var(--pa-maroon);
-    font-weight: 400;
-    font-size: clamp(calc(2.8rem / 1.6), 3vw + calc(1rem / 1.6), calc(3.2rem / 1.6));
-
-    @media (max-width: 64em) {
-      font-size: calc(2.4rem / 1.6);
-    }
-  }
-
-  .hero-grid  {
-    opacity: 0;
-  }
-`
-
 export async function getStaticProps() {
   const navItems = await getPages();
   const footerColumns = await getFooterColumns();
@@ -200,7 +72,7 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
 
   return (
     <MainLayout title="" navItems={navItems} footerColumns={footerColumns}>
-      <PAContainer>
+      <div className="pa-homepage">
         <div className="intro-text">
           <div className="intro-rte">
             <h1>
@@ -231,9 +103,10 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
             <div className="grid grid-cols-12 gap-7 hero-grid">
               {
                 homepageData.heroImages.data.map((image, idx) => (
-                  <div key={idx} className={`relative last:max-md:hidden ${idx === 0 && 'col-span-full h-[min(50vh,500px)]'} ${idx === 2 && 'col-span-6 md:col-span-6 h-64'} ${idx !== 2 && idx !== 0 && 'col-span-6 md:col-span-3 h-64'} lg:h-[min(50vh,500px)]`}>
+                  <div key={idx} className={`relative last:max-md:hidden ${idx === 0 && 'col-span-full h-60 md:h-[min(50vh,500px)]'} ${idx === 2 && 'col-span-6 md:col-span-6 h-64'} ${idx !== 2 && idx !== 0 && 'col-span-6 md:col-span-3 h-64'} lg:h-[min(50vh,500px)]`}>
                     <CldImage
                       src={image.attributes.url}
+                      className="object-[center_35%]"
                       layout="fill"
                       objectFit='cover'
                       alt="Sfeerbeeld van Plan A Nijmegen"
@@ -258,7 +131,7 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
             ))
           }
         </div>
-      </PAContainer>
+      </div>
     </MainLayout >
   )
 }

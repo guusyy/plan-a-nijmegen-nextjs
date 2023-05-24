@@ -69,8 +69,8 @@ export default function TextAndImage({ contentBlockContext }: {
   }, [initiated])
 
   return (
-    <Container className={`flex flex-col grid-cols-12 gap-10 xl:grid ${contentBlockContext.gecentreerd ? 'items-center' : ''}`}>
-      <div className={`column w-full xl:max-w-2xl ${contentBlockContext.mirrored ? 'xl:order-last col-span-7 xl:ml-20' : 'col-span-5'}`}>
+    <Container className={`flex flex-col xl:grid ${contentBlockContext.gecentreerd ? 'items-start gap-10 xl:gap-40 grid-cols-2' : 'gap-10 grid-cols-12'}`}>
+      <div className={`column flex-1 xl:max-w-2xl ${contentBlockContext.mirrored ? 'xl:order-last col-span-7 xl:ml-20' : 'col-span-5'} ${contentBlockContext.gecentreerd ? '!col-span-1 !ml-0' : ''}`}>
         <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
           {contentBlockContext.mdText}
         </ReactMarkdown>
@@ -118,7 +118,7 @@ export default function TextAndImage({ contentBlockContext }: {
 
       {
         contentBlockContext.images.data.length > 0 && initiated && (
-          <div className={`max-xl:w-full swiper-holder ${contentBlockContext.mirrored ? 'col-span-5' : 'col-span-7 xl:ml-20'}`}>
+          <div className={`max-xl:w-full swiper-holder ${contentBlockContext.mirrored ? 'col-span-5' : 'col-span-7 xl:ml-20'} ${contentBlockContext.gecentreerd ? '!col-span-1 !ml-0' : ''}`}>
             <div className="image-holder">
               {
                 contentBlockContext.images.data.length < 2 ? (

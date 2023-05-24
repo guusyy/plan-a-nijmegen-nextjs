@@ -45,6 +45,10 @@ a {
   &:hover {
     text-decoration: underline;
   }
+
+  &[href*="google.com/maps"] {
+    text-decoration: underline;
+  }
 }
 
 .rte {

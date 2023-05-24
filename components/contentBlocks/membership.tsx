@@ -200,7 +200,7 @@ export default function Membership({contentBlockContext}: {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(19rem,1fr))] gap-10 mt-16 mb-6">
         {
           contentBlockContext.subscriptions.data.map((membership, index) => (
-            <article className="border-2 border-t-4 p-7 border-pa-maroon" key={index}>
+            <article className="border-2 border-t-8 p-7 border-pa-maroon" key={index}>
               <h3 className="text-[28px]">{membership.attributes.title}</h3>
               <div className="mt-6 text-xl">€<span className="mx-1 text-3xl">{membership.attributes.price.toFixed(2).toString().replace(".", ",")}</span> <span className="text-lg tracking-tight">per maand</span></div>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} className="mt-3 rte">
