@@ -95,8 +95,10 @@ export default function TextAndImage({ contentBlockContext }: {
               {
                 contentBlockContext.buttons.map(button => (
                   (button.linkedPage?.data?.attributes.slug ?? button.externalUrl) && (
-                    <Link href={button.linkedPage?.data?.attributes.slug ?? button.externalUrl} key={button.label}>
-                      <a className="btn">
+                    <Link 
+                      href={button.linkedPage?.data?.attributes.slug ?? button.externalUrl} key={button.label} 
+                      >
+                      <a className="btn" target={button.externalUrl && !button.linkedPage?.data?.attributes.slug ? '_blank' : '_self'}>
                         <span>
                           {button.label}
                         </span>
