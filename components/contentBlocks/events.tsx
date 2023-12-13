@@ -44,9 +44,6 @@ export default function Events({ contentBlockContext, events }: {
                       </p>
                     </div>
                     <div className={`max-w-2xl md:pl-10 relative`}>
-                      <div className={`w-3.5 h-3.5 rounded-full top-[7px] -left-6 md:left-3 absolute ${
-                        event.Type === 'Zakelijk' ? 'bg-pa-maroon' : 
-                        event.Type === 'Informeel' ? 'bg-[#FAB90F]' : ''}`} title={event.Type}></div>
                       <h3 className={`w-fit relative mb-1 text-2xl font-bold uppercase font-heading ${event.Type === 'Gesloten' ? 'before:-left-1 before:w-[calc(100%+10px)] before:h-full before:absolute before:bg-pa-red before:-z-10 text-white' : ''}`}>{event.Titel}</h3>
                       <p>{event.Beschrijving}</p>
                     </div>
