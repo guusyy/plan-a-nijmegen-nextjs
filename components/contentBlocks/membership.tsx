@@ -202,7 +202,9 @@ export default function Membership({contentBlockContext}: {
           contentBlockContext.subscriptions.data.map((membership, index) => (
             <article className="border-2 border-t-8 p-7 border-pa-maroon" key={index}>
               <h3 className="text-[28px]">{membership.attributes.title}</h3>
-              <div className="mt-6 text-xl">€<span className="mx-1 text-3xl">{membership.attributes.price.toFixed(2).toString().replace(".", ",")}</span> <span className="text-lg tracking-tight">per maand</span></div>
+              {(membership.attributes.price && membership.attributes.price > 0 ? (
+                <div className="mt-6 text-xl">€<span className="mx-1 text-3xl">{membership.attributes.price.toFixed(2).toString().replace(".", ",")}</span> <span className="text-lg tracking-tight">per maand</span></div>
+              ) : null)}
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} className="mt-3 rte">
                   {membership.attributes.perksMd}
                 </ReactMarkdown>
