@@ -6,8 +6,7 @@ import styled from "styled-components"
 import { community, membershipCB, ruimteCB } from "../../queries/getPage"
 import anime from 'animejs'
 import { Container } from "./text-image"
-import { useRouter } from "next/router"
-import { ContactRow, IntroRow } from "./membership"
+import { IntroRow } from "./membership"
 
 import { EffectFade, Navigation, Lazy } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -61,12 +60,13 @@ const WorkspaceRow = styled.div`
     }
   }
 
-  & button {
+  & a {
     border: 1px solid var(--pa-maroon);
     background: var(--pa-white);
     font-size: calc(2rem / 1.6);
     text-transform: uppercase;
     padding: calc(1rem / 1.6);
+    display: inline-flex;
     color: var(--pa-maroon);
     cursor: pointer;
     transition: all .1s ease;
@@ -79,6 +79,7 @@ const WorkspaceRow = styled.div`
     &:hover {
       background: var(--pa-maroon);
       color: var(--pa-white);
+      text-decoration: none;
     }
   }
 `
@@ -87,8 +88,6 @@ export default function Membership({contentBlockContext}: {
   contentBlockContext: ruimteCB
 }) {
   const spaces = [...contentBlockContext.spaces.data].sort((a, b) => a.attributes.position - b.attributes.position);
-
-  const formRef = React.createRef<HTMLDivElement>();
 
   const [initiated, setInitiated] = useState(false);
 
@@ -108,54 +107,7 @@ export default function Membership({contentBlockContext}: {
         duration: 1700,
         delay: anime.stagger(100) // increase delay by 100ms for each elements.
       }, 100)
-      .add({
-        targets: '.contact-row',
-        translateY: [-5, 0],
-        opacity: [0, 1],
-        duration: 1700,
-      }, 500)
   }, [initiated])
-
-  const [chosenRuimte, setChosenRuimte] = useState(contentBlockContext.spaces.data[0].attributes.title);
-
-  const setGekozenRuimte = (value: string) => {
-    setChosenRuimte(value);
-
-    formRef.current.scrollIntoView({
-      block: "center",
-      behavior: "smooth"
-    });
-  }
-   
-  const handleRuimteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setChosenRuimte(e.target.value);
-  };
-
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    event.preventDefault();
-
-    const myForm = event.target as HTMLFormElement;
-    const formData = new FormData(myForm);
-    
-    fetch("/favicon.ico", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData as any).toString(),
-    })
-      .then(() => {
-        setFormSubmitted(true);
-
-        anime({
-          targets: '.succes-message',
-          translateY: [-10, 0],
-          opacity: [0, 100],
-          duration: 1000
-        });
-      })
-      .catch((error) => alert(error));
-  }
 
   return (
     <Container>
@@ -224,87 +176,14 @@ export default function Membership({contentBlockContext}: {
                   <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte workspace-description">
                     {space.attributes.descriptionMd}
                   </ReactMarkdown>
-                  <button onClick={() => setGekozenRuimte(space.attributes.title)}>{space.attributes.buttonLabel}</button>
+                  <a href={space.attributes.button.externalUrl} target="_blank" rel="noreferrer">{space.attributes.button.label}</a>
+                  {/* <button onClick={() => setGekozenRuimte(space.attributes.title)}>{space.attributes.buttonLabel}</button> */}
                 </div>
               ))
             }
           </WorkspaceRow>
         )
       }
-      <ContactRow className="contact-row" ref={formRef}>
-        <div>
-          {
-            !formSubmitted && (
-              <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
-                {contentBlockContext.formIntroTextMd}
-              </ReactMarkdown>
-            )
-          }
-          {
-            !formSubmitted && (
-              <form 
-                name="ruimteHuren"
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={handleSubmit}
-              >
-                <input type="hidden" name="form-name" value="ruimteHuren" />
-                <div>
-                  <div style={{position: 'relative'}}>
-                    <select 
-                      name="gekozenRuimte"  
-                      onChange={handleRuimteChange} 
-                      value={chosenRuimte}
-                    >
-                      {
-                        spaces.map((space, index) => (
-                          <option value={space.attributes.title} key={index}>{space.attributes.title}</option>
-                        ))
-                      }
-                    </select>
-                    <svg className="select-arrow-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.424 14.144"><path d="M868.108,427.449l-12.944-9.712,12.944-9.712,1.2,1.6L858.5,417.737l10.812,8.112Z" transform="translate(-408.025 869.309) rotate(-90)" fill="#691e0f"/></svg>
-                  </div>
-                </div>
-                <p>
-                  <input type="text" name="naam" placeholder="Naam*" required />
-                </p>
-                <p hidden>
-                  <label>
-                    Vul dit niet in: <input name="bot-field" />
-                  </label>
-                </p>
-                <p>
-                  <input type="email" name="email" placeholder="E-Mail*" required />
-                </p>
-                <p>
-                  <input type="text" name="telefoon" placeholder="Telefoon*" required />
-                </p>
-                <p>
-                <label htmlFor="gewensteDatum">Gewenste datum:</label>
-                  <input type="date" name="gewensteDatum" placeholder="Gewenste datum" id="gewensteDatum" />
-                </p>
-                <p className="address-inputs">
-                  <input type="text" name="postcode" placeholder="Postcode" />
-                  <input type="text" name="huisnummer" placeholder="Huisnr." />
-                  <input type="text" name="toevoegingen" placeholder="Toev." />
-                </p>
-                <p>
-                  <textarea name="opmerking" placeholder="Opmerking" />
-                </p>
-                <p>
-                  <button type="submit"><span>Verstuur</span><span>&gt;</span></button>
-                </p>
-              </form>
-            )
-          }
-          <div className={`succes-message ${formSubmitted ? '' : 'hidden'}`}>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
-              {contentBlockContext.formSubmitTextMd}
-            </ReactMarkdown>
-          </div>
-        </div>
-      </ContactRow>
     </Container>
   )
 }

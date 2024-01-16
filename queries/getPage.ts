@@ -87,6 +87,7 @@ export type space = {
     title: string
     descriptionMd: string
     buttonLabel: string
+    button: button
     image: {
       data: StrapiImage[]
     }

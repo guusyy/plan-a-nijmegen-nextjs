@@ -15,7 +15,18 @@ export const fragments = {
             attributes {
               title:Titel
               descriptionMd:Omschrjiving
-              buttonLabel:SelecteerKnopTekst
+              button:ReserveerKnop {
+                label:Label
+                linkedPage:GelinktePagina {
+                  data {
+                    attributes {
+                      title:Titel
+                      slug
+                    }
+                  }
+                }
+                externalUrl:ExterneLink
+              }
               image:Afbeelding {
                 data {
                   attributes {
