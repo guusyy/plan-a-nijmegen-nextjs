@@ -176,7 +176,7 @@ export default function Membership({contentBlockContext}: {
                   <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte workspace-description">
                     {space.attributes.descriptionMd}
                   </ReactMarkdown>
-                  <a href={space.attributes.button.externalUrl} target="_blank" rel="noreferrer">{space.attributes.button.label}</a>
+                  <a href={space.attributes.button.externalUrl}>{space.attributes.button.label}</a>
                   {/* <button onClick={() => setGekozenRuimte(space.attributes.title)}>{space.attributes.buttonLabel}</button> */}
                 </div>
               ))
