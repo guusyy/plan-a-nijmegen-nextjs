@@ -8,9 +8,9 @@ type FooterColumnRichText = {
 
 type FooterColumnLinks = button[]
 
-type FooterColumn = FooterColumnRichText | FooterColumnLinks
+export type FooterColumn = FooterColumnRichText | FooterColumnLinks
 
-export default async function getFooterColumns(): Promise<FooterColumn> {
+export default async function getFooterColumns(): Promise<FooterColumn[]> {
   const { data } = await client.query({
     query: gql`
       query {

@@ -1,7 +1,7 @@
 import { ApolloError, gql } from "@apollo/client";
 import client from "../apollo-client";
 
-type NavItem = {
+export type NavItem = {
   show: boolean;
   title: string;
   position: number;

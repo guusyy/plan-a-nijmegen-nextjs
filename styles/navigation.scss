@@ -12,26 +12,26 @@
   }
 
   .logo-left-holder {
-    min-width: 8.5rem;
-    height: calc(5rem + .4rem);
+    min-width: calc(8.5rem / 1.6);
+    height: calc(calc(5rem / 1.6) + calc(.4rem / 1.6));
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     z-index:100000;
-    margin-top: .1rem;
+    margin-top: calc(.1rem / 1.6);
 
     @media (max-width: 64em) {
-      min-width: 6.5rem;
-      height: 4rem;
+      min-width: calc(6.5rem / 1.6);
+      height: calc(4rem / 1.6);
     }
 
     & img {
-      height: 3rem;
-      width: 6.4rem;
+      height: calc(3rem / 1.6);
+      width: calc(6.4rem / 1.6);
 
       @media (max-width: 64em) {
-        height: 2.5rem !important;
-        width: 5.2rem !important;
+        height: calc(2.5rem / 1.6) !important;
+        width: calc(5.2rem / 1.6) !important;
       }
     }
 
@@ -47,26 +47,26 @@
   }
 
   .logo-right-holder {
-    min-width: 5rem;
-    height: calc(5rem + .4rem);
+    min-width: calc(5rem / 1.6);
+    height: calc(calc(5rem / 1.6) + calc(.4rem / 1.6));
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     z-index:100000;
-    margin-top: .1rem;
+    margin-top: calc(.1rem / 1.6);
 
     @media (max-width: 64em) {
-      min-width: 3.5rem;
-      height: 4rem;
+      min-width: calc(3.5rem / 1.6);
+      height: calc(4rem / 1.6);
     }
 
     & img {
-      height: 3rem;
-      width: 2.4rem;
+      height: calc(3rem / 1.6);
+      width: calc(2.4rem / 1.6);
       
       @media (max-width: 64em) {
-        height: 2.5rem !important;
-        width: 1.9rem !important;
+        height: calc(2.5rem / 1.6) !important;
+        width: calc(1.9rem / 1.6) !important;
       }
     }
 
@@ -96,15 +96,15 @@
   }
 
   .pa-navigation {
-    margin: 6rem 5rem 0 9.5rem;
-    padding: 1rem 0;
+    margin: calc(6rem / 1.6) calc(5rem / 1.6) 0 calc(9.5rem / 1.6);
+    padding: calc(1rem / 1.6) 0;
 
     display: flex;
-    gap: 1rem;
+    gap: calc(1rem / 1.6);
     justify-content: flex-end;
 
     @media (max-width: 64em) {
-      margin: 5rem 3.5rem 0 6.5rem;
+      margin: calc(5rem / 1.6) calc(3.5rem / 1.6) 0 calc(6.5rem / 1.6);
     }
 
     .pa-mobile-nav-button {
@@ -113,11 +113,11 @@
       cursor: pointer;
       padding: 0;
       display: none;
-      height: 3rem;
+      height: calc(3rem / 1.6);
 
       svg {
         fill: var(--pa-maroon);
-        width: 3rem;
+        width: calc(3rem / 1.6);
       }
 
       @media (max-width: 64em) {
@@ -129,14 +129,14 @@
       display: flex;
       justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: calc(2rem / 1.6);
 
       a {
         color: var(--pa-maroon);
         text-decoration: none;
         text-transform: uppercase;
-        font-size: clamp(1.6rem, 1vw + 1rem, 2.4rem);
-        letter-spacing: -.1rem;
+        font-size: clamp(calc(1.6rem / 1.6), 1vw + calc(1rem / 1.6), calc(2.4rem / 1.6));
+        letter-spacing: -1px;
 
         &:hover {
           text-decoration: underline;
@@ -150,13 +150,13 @@
       @media (max-width: 64em) {
         width: 100%;
         flex-direction: column;
-        margin-bottom: 3rem;
+        margin-bottom: calc(3rem / 1.6);
         transform: translateY(-100%);
         margin-top: -100%;
         transition: all .6s ease-out;
 
         a {
-          font-size: 3rem;
+          font-size: calc(3rem / 1.6);
           line-height: 1;
           text-transform: none;
         }

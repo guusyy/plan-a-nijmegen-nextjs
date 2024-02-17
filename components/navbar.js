@@ -23,6 +23,7 @@ export default function Navbar({ navItems }) {
                 height={30}
                 src='/images/PLAN_A_Logo_1_onderdeel_1.svg' 
                 alt="" 
+                loading="eager"
               />
             </a>
           </Link>
@@ -37,6 +38,7 @@ export default function Navbar({ navItems }) {
                 height={30}
                 src='/images/PLAN_A_Logo_1_onderdeel_3.svg' 
                 alt="" 
+                loading="eager"
               />
             </a>
           </Link>

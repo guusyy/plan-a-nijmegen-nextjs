@@ -9,10 +9,10 @@ import { Container } from "./text-image"
 import { CldImage } from 'next-cloudinary';
 
 const CommunityGrid = styled.div`
-  margin: 5rem 0;
+  margin: calc(5rem / 1.6) 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(calc(23rem / 1.6), 1fr));
+  gap: calc(3rem / 1.6);
 
   & .community-item {
     display: flex;
@@ -20,7 +20,7 @@ const CommunityGrid = styled.div`
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    min-height: 20rem;
+    min-height: calc(20rem / 1.6);
 
     > div {
       min-height: 100%;
@@ -52,8 +52,8 @@ const CommunityGrid = styled.div`
   & .community-image {
     max-width: 100%;
     height: 100%;
-    max-height: 30rem;
-    min-height: 20rem;
+    max-height: calc(30rem / 1.6);
+    min-height: calc(20rem / 1.6);
     object-fit: cover;
   }
 
@@ -63,7 +63,7 @@ const CommunityGrid = styled.div`
     min-height: 100%;
     min-width: 100%;
     background: var(--pa-maroon);
-    padding: 2rem;
+    padding: calc(2rem / 1.6);
     color: var(--pa-white);
     pointer-events: none;
 
@@ -79,27 +79,27 @@ const CommunityGrid = styled.div`
     justify-content: space-between;
 
     & h2 {
-      font-size: 1.8rem;
+      font-size: calc(1.8rem / 1.6);
 
       @media (max-width: 64em) {
-        font-size: 2.2rem;
+        font-size: calc(2.2rem / 1.6);
       }
     }
 
     & h3 {
-      font-size: 2.2rem;
+      font-size: calc(2.2rem / 1.6);
 
       @media (max-width: 64em) {
-        font-size: 2.6rem;
+        font-size: calc(2.6rem / 1.6);
       }
     }
 
     & .info-links {
       display: flex;
-      gap: 1rem;
+      gap: calc(1rem / 1.6);
 
       & a {
-        padding: .5rem;
+        padding: calc(.5rem / 1.6);
         cursor: pointer;
         fill: white;
       }
@@ -141,7 +141,7 @@ export default function Community({contentBlockContext}: {
   }
 
   return (
-    <Container widthFull={true}>
+    <Container>
       <div className="column">
         <ReactMarkdown rehypePlugins={[rehypeRaw]} className="rte">
           {contentBlockContext.mdText}

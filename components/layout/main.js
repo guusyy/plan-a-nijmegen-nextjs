@@ -25,7 +25,7 @@ export default function MainLayout({ children, navItems, footerColumns, title })
         <meta property="og:image" content="https://res.cloudinary.com/djwitcyyb/image/upload/v1650438043/DSC_04055_847da76efe_63d568e44f.webp"></meta>
         <meta name="twitter:image" content="https://res.cloudinary.com/djwitcyyb/image/upload/v1650438043/DSC_04055_847da76efe_63d568e44f.webp"></meta>
       </Head>
-      <div>
+      <div className="overflow-x-clip">
         <Navbar navItems={navItems} />
         <div className="content-container">
           <main>{children}</main>

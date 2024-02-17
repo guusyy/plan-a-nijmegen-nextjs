@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
+import { contentBlock } from "./getPage";
+import { fragments } from "./fragments";
 
 export type button = {
   label: string;
@@ -15,21 +17,21 @@ export type button = {
 }
 
 export type image = {
-  data: {
-    attributes: {
-      url: string;
-      width: string;
-      height: string;
-      provider_metadata: string;
-    }
+  attributes: {
+    url: string;
+    width: string;
+    height: string;
+    provider_metadata: string;
   }
 }
 
-type homePageData = {
+export type homePageData = {
   introText: string;
-  heroImages: image[];
+  heroImages: {
+    data: image[]
+  }
   buttons: button[];
-  contactDetails: string;
+  contentBlocks: contentBlock[]
 }
 
 export default async function getHomePage(): Promise<homePageData> {
@@ -40,7 +42,7 @@ export default async function getHomePage(): Promise<homePageData> {
           data {
             attributes {
               introText:IntroTekst
-              heroImages:UitgelichteAfbeeldingRandomGekozen {
+              heroImages:UitgelichteAfbeeldingen {
                 data {
                   attributes {
                     url
@@ -61,7 +63,7 @@ export default async function getHomePage(): Promise<homePageData> {
                 }
                 externalUrl:ExterneLink
               }
-              contactDetails:Contactgegevens
+              ${fragments.contentblocks}
             }
           }
         }

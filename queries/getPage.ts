@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import { button } from "./getHomepage";
+import { fragments } from "./fragments";
 
 export type StrapiImage = {
   attributes: {
@@ -14,7 +15,7 @@ export type StrapiImage = {
   }
 }
 
-export type contentBlock = textAndImage | community | membershipCB | ruimteCB | welkomsActieCB;
+export type contentBlock = textAndImage | community | membershipCB | ruimteCB | welkomsActieCB | textTwoCols | events;
 
 export type textAndImage = {
   blockType: "ComponentContentblockTekstEnAfbeeldingSlider";
@@ -23,7 +24,24 @@ export type textAndImage = {
   images: {
     data: StrapiImage[]
   };
+  usps?: {
+    usp: string
+  }[];
   buttons: button[];
+  textBelow?: string;
+  gecentreerd: boolean | null;
+  mirrored: boolean | null;
+}
+
+export type textTwoCols = {
+  blockType: "ComponentContentblockTekstTweeKolommen";
+  text1?: string;
+  text2?: string;
+}
+
+export type events = {
+  blockType: "ComponentContentblockAgendaOverzicht";
+  intro?: string;
 }
 
 export type community = {
@@ -58,11 +76,10 @@ export type membership = {
 export type membershipCB = {
   blockType: "ComponentContentblockMembershipSelectie";
   introTextMd: string
-  formTextMd: string
-  formSubmitTextMd: string
   subscriptions: {
     data: membership[]
   }
+  disclaimer: string
 }
 
 export type space = {
@@ -70,6 +87,7 @@ export type space = {
     title: string
     descriptionMd: string
     buttonLabel: string
+    button: button
     image: {
       data: StrapiImage[]
     }
@@ -106,105 +124,7 @@ export default async function getPage(slug: string): Promise<StrapiPage> {
           data {
             attributes {
               title:Titel
-              contentBlocks:Contentblokken {
-                blockType:__typename
-                ... on ComponentContentblockWelkomsactie {
-                  introText:introTekst
-                  formSubmitTextMd:succesBerichtFormulier
-                }
-                ... on ComponentContentblockRuimteSelectie {
-                  introTextMd:IntroTekst
-                  formIntroTextMd:FormulierIntroTekst
-                  formSubmitTextMd:FormulierVerzondenBericht
-                  spaces:ruimtes {
-                    data {
-                      attributes {
-                        title:Titel
-                        descriptionMd:Omschrjiving
-                        buttonLabel:SelecteerKnopTekst
-                        image:Afbeelding {
-                          data {
-                            attributes {
-                              url
-                              width
-                              height
-                              provider_metadata
-                              ext
-                            }
-                          }
-                        }
-                        position:Positie
-                      }
-                    }
-                  }
-                }
-                ... on ComponentContentblockMembershipSelectie {
-                  introTextMd:IntroTekst
-                  formTextMd:FormulierIntroTekst
-                  formSubmitTextMd:FormulierVerzondenBericht
-                  subscriptions:abonnementen (pagination: {limit: 100}) {
-                    data {
-                      attributes {
-                        title:Titel
-                        price:PrijsPm
-                        buttonLabel:KnopTekst
-                        perksMd:Perks
-                      }
-                    }
-                  }
-                }
-                ... on ComponentContentblockCommunity {
-                  mdText:Tekst
-                  members:community_members (pagination: {limit: 500}) {
-                    data {
-                      attributes {
-                        image:Afbeelding {
-                          data {
-                            attributes {
-                              url
-                              width
-                              height
-                              provider_metadata
-                            }
-                          }
-                        }
-                        fullName:VolledigeNaam
-                        companyName:Bedrijfsnaam
-                        websiteUrl:WebsiteLink
-                        instaUrl:InstagramLink
-                        linkedInUrl:LinkedinLink
-                        fbUrl:FacebookLink
-                      }
-                    }
-                  }
-                }
-                ... on  ComponentContentblockTekstEnAfbeeldingSlider{
-                  mdText:Tekst
-                  noImageFullWidth:AlleenTekstMetVolleBreedte
-                  images:AfbeeldingInSlider {
-                    data {
-                      attributes {
-                        url
-                        width
-                        height
-                        provider_metadata
-                      }
-                    }
-                  }
-                  buttons:Knoppen {
-                    label:Label
-                    linkedPage:GelinktePagina {
-                      data {
-                        attributes {
-                          title:Titel
-                          slug
-                        }
-                      }
-                    }
-                    externalUrl:ExterneLink
-                  }
-                }
-              }
+              ${fragments.contentblocks}
             }
           }
         }

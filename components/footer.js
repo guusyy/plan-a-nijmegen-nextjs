@@ -3,53 +3,37 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from 'rehype-raw'
 import styled from "styled-components"
 
-const PAFooter = styled.footer`
-  border-top: 1px solid var(--pa-maroon);
-  padding: 2rem 0;
-  line-height: 2rem;
-  font-size: 1.4rem;
-
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0,1fr));
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-
-  @media (max-width: 80em) {
-    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-    margin-top: 8rem;
-  }
-
-  @media (max-width: 64em) {
-    grid-template-columns: minmax(0,1fr);
-    margin-top: 8rem;
-  }
-
-  & * {
-    line-height: 2rem;
-    font-size: 1.4rem;
+const PageFooter = styled.footer`
+  h2 {
+    letter-spacing: -1px !important;
   }
 
   table {
-    width: 100%;
-    max-width: 25rem;
+    font-size: 16px;
+    line-height: 1.5;
+    
+    td:not(:first-child) {
+      padding: 0 1rem;
+    }
   }
 
-  h2, h3, h4 {
-    text-transform: uppercase;
+  h3 {
+    margin-top: 20px;
   }
 `
 
 export default function Footer({ footerColumns }) {
   return (
-    <PAFooter>
+    <PageFooter className={`relative text-white py-20 grid lg:grid-cols-2 gap-10`}>
+      <div className={`absolute w-[calc(100vw+200px)] h-full top-0 bg-pa-maroon -z-10 left-1/2 -translate-x-1/2`}></div>
+
       {
         footerColumns?.map((col, i) => {
           switch (col.componentType) {
             case 'ComponentFooterLinks':
               return (
-                <div key={i}>
-                  <ul>
+                <div key={i} className="col-span-full">
+                  <ul className={`flex gap-x-10 gap-y-5 flex-wrap text-lg`}>
                     {
                       col.links?.map(link => (
                         <li key={link.label}>
@@ -64,7 +48,7 @@ export default function Footer({ footerColumns }) {
               )
             case 'ComponentFooterRijkeTekst':
               return (
-                <div key={i}>
+                <div key={i} className="rte [&>ul]:pl-0 [&_li]:before:sr-only">
                   <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                     {col.mdText}
                   </ReactMarkdown>
@@ -75,6 +59,6 @@ export default function Footer({ footerColumns }) {
           }
         })
       }
-    </PAFooter>
+    </PageFooter>
   )
 }

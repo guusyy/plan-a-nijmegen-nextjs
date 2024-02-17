@@ -9,10 +9,11 @@ import getFooterColumns from "../queries/getFooterColumns";
 import getPage, { contentBlock } from "../queries/getPage";
 import getPages from "../queries/getPages";
 
-import { StrapiPage } from "../queries/getPage";
 import { InferGetStaticPropsType } from "next";
 import Welkomsactie from "../components/contentBlocks/welkomsactie";
-import { useRouter } from "next/router";
+import TextTwoCols from "../components/contentBlocks/textTwoCols";
+import Events, { eventItem } from "../components/contentBlocks/events";
+import getEvents from "../queries/getEvents";
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -31,6 +32,11 @@ export async function getStaticProps(context) {
   const navItems = await getPages();
   const footerColumns = await getFooterColumns();
   const page = await getPage(context.params.slug);
+  let events: eventItem[] = [];
+
+  if(page.contentBlocks.some(contentBlock => contentBlock.blockType === "ComponentContentblockAgendaOverzicht")) {
+    events = await getEvents();
+  }
 
   if (!navItems || !footerColumns || !page) {
     throw new Error(`Failed to fetch navItems, footerColumns or page`)
@@ -42,27 +48,31 @@ export async function getStaticProps(context) {
         .filter(page => page.show)
         .sort((a, b) => a.position-b.position),
       footerColumns,
-      page
+      page,
+      events
     }
  };
+}
+
+export const getContentBlockComponent = (contentBlock: contentBlock, idx: number, title: string, events?: eventItem[]) => {
+  switch(contentBlock.blockType) {
+      case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={`${idx}-${title}`} />;
+      case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      case "ComponentContentblockTekstTweeKolommen": return <TextTwoCols contentBlockContext={contentBlock} key={`${idx}-${title}`}  />;
+      case "ComponentContentblockAgendaOverzicht": return <Events contentBlockContext={contentBlock} key={`${idx}-${title}`} events={events}  />;
+      default:                                              return <h1 key={`${idx}-${title}`} >Geen contentblock template</h1>
+    }
 }
 
 export default function DetailPage({ 
   navItems, 
   footerColumns, 
-  page 
+  page,
+  events
 }: InferGetStaticPropsType<typeof getStaticProps> ) {
-
-  const getContentBlockComponent = (contentBlock: contentBlock, idx: number) => {
-    switch(contentBlock.blockType) {
-        case "ComponentContentblockWelkomsactie": return <Welkomsactie contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockRuimteSelectie": return <Ruimtes contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockMembershipSelectie": return <Membership contentBlockContext={contentBlock} key={idx} />;
-        case "ComponentContentblockCommunity":  return <Community contentBlockContext={contentBlock} key={idx}  />;
-        case "ComponentContentblockTekstEnAfbeeldingSlider":  return <TextAndImage contentBlockContext={contentBlock} key={idx}  />;
-        default:                                              return <h1 key={idx} >Geen contentblock template</h1>
-      }
-  }
 
   const getOgImage = (contentBlock: contentBlock, idx?: number) => {
     switch(contentBlock.blockType) {
@@ -77,11 +87,13 @@ export default function DetailPage({
 
   return (
     <MainLayout navItems={navItems} footerColumns={footerColumns} title={page.title}>
-      {
-        page.contentBlocks.map((contentBlock, idx) => (
-          getContentBlockComponent(contentBlock, idx)
-        ))
-      }
+      <div className="space-y-20 xl:space-y-32">
+        {
+          page.contentBlocks.map((contentBlock, idx) => (
+            getContentBlockComponent(contentBlock, idx, page.title, events)
+          ))
+        }
+      </div>
     </MainLayout>
   )
 }

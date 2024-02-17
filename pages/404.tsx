@@ -32,8 +32,8 @@ const ErrorContainer = styled.div`
   justify-content: space-between;
 
   & h2 {
-    font-size: 4.8rem;
-    line-height: 6rem;
+    font-size: calc(4.8rem / 1.6);
+    line-height: calc(6rem / 1.6);
   }
 `
 
