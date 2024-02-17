@@ -21,6 +21,20 @@ const nextConfig = {
     locales: ["nl-NL"],
     defaultLocale: "nl-NL",
   },
+  async redirects() {
+    return [
+      {
+        source: '/membership',
+        destination: '/flexwerken',
+        permanent: true,
+      },
+      {
+        source: '/community',
+        destination: '/over-ons',
+        permanent: true,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig
