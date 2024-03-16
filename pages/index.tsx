@@ -90,7 +90,7 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
                   target={button.externalUrl ? '_blank' : '_self'}
                   data-goatcounter-click="homepage-buttons-click"
                   data-goatcounter-title="Homepagina knop geklikt"
-                  data-goatcounter-referrer={button.label}
+                  data-goatcounter-referrer={button.label.toLocaleLowerCase().replaceAll(' ', '-')}
                 >
                   <h2 className="pa-label">{ button.label }</h2>
                   <span className="pa-arrow">
