@@ -178,7 +178,12 @@ export default function Membership({contentBlockContext}: {
                   </ReactMarkdown>
                   {
                     space.attributes.button && (
-                      <a href={space.attributes.button.externalUrl}>{space.attributes.button.label}</a>
+                      <a 
+                        href={space.attributes.button.externalUrl}
+                        data-goatcounter-click="room-button-click"
+                        data-goatcounter-title="Ruimte reservering"
+                        data-goatcounter-referrer={space.attributes.title.toLowerCase().replaceAll(' ', '-')}
+                      >{space.attributes.button.label}</a>
                     )
                   }
                   {/* <button onClick={() => setGekozenRuimte(space.attributes.title)}>{space.attributes.buttonLabel}</button> */}

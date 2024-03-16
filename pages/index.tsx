@@ -85,7 +85,13 @@ export default function Home({ navItems, footerColumns, homepageData }: { navIte
           {
             homepageData.buttons?.map(button => (
               <Link href={button.linkedPage.data?.attributes.slug ?? button.externalUrl} key={button.label}>
-                <a className="pa-quickbutton" target={button.externalUrl ? '_blank' : '_self'}>
+                <a 
+                  className="pa-quickbutton" 
+                  target={button.externalUrl ? '_blank' : '_self'}
+                  data-goatcounter-click="homepage-buttons-click"
+                  data-goatcounter-title="Homepagina knop geklikt"
+                  data-goatcounter-referrer={button.label}
+                >
                   <h2 className="pa-label">{ button.label }</h2>
                   <span className="pa-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.868 29.5">
