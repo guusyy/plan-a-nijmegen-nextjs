@@ -17,7 +17,8 @@ export default function MainLayout({ children, navItems, footerColumns, title })
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f0250a" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff"></meta>
-        
+        <meta name="robots" content="noindex, nofollow" />
+
         <meta name="description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten, eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om gezellig te borrelen en dineren."></meta>
         <meta property="og:description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten en eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om te borrelen en dineren. "></meta>
         <meta name="twitter:description" content="Een multifunctionele plek in Nijmegen-West waar je kan werken, ontmoeten en eten &amp; drinken. Overdag een werkplek, in de avond en het weekend een plek om te borrelen en dineren. "></meta>
